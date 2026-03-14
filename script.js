@@ -1,5 +1,27 @@
 document.addEventListener("DOMContentLoaded", () => {
     
+    // --- SLIDE-OUT MENU LOGIC ---
+    const menuBtn = document.getElementById('open-menu-btn');
+    const closeMenuBtn = document.getElementById('close-menu-btn');
+    const sideMenu = document.getElementById('side-menu');
+    const menuOverlay = document.getElementById('menu-overlay');
+
+    function toggleMenu() {
+        sideMenu.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
+        // Prevent background scrolling when menu is open
+        document.body.style.overflow = sideMenu.classList.contains('active') ? 'hidden' : '';
+    }
+
+    menuBtn.addEventListener('click', toggleMenu);
+    closeMenuBtn.addEventListener('click', toggleMenu);
+    menuOverlay.addEventListener('click', toggleMenu);
+    
+    // Close menu if a link inside it is clicked
+    const menuLinks = document.querySelectorAll('.side-menu-links a');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', toggleMenu);
+    });
     // 1. Transparent to White Header Scroll Effect
     const header = document.getElementById('main-header');
     

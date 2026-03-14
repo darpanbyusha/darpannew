@@ -15,10 +15,12 @@
 
     <header id="main-header" class="site-header">
         <div class="header-left">
-            <button class="hamburger-btn">
-                <span></span><span></span><span></span>
+            <button class="menu-toggle-btn" id="open-menu-btn">
+                <div class="hamburger-icon">
+                    <span></span><span></span><span></span>
+                </div>
+                <span class="header-label hidden-mobile">Menu</span>
             </button>
-            <span class="header-label hidden-mobile">Menu</span>
         </div>
         
         <div class="header-centre">
@@ -26,11 +28,42 @@
         </div>
         
         <div class="header-right">
-            <button class="header-label hidden-mobile">Search</button>
-            <button class="header-label">Contact</button>
-            <span class="header-label">Cart (0)</span>
+            <button class="search-btn" aria-label="Search">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+            <a href="#contact" class="btn-header-contact hidden-mobile">Contact Us</a>
         </div>
     </header>
+
+    <div class="menu-overlay" id="menu-overlay"></div>
+    <nav class="side-menu" id="side-menu">
+        <div class="side-menu-header">
+            <button class="close-menu-btn" id="close-menu-btn" aria-label="Close Menu">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        
+        <div class="side-menu-links">
+            <a href="#collections">Collections</a>
+            <a href="#designs">New Designs</a>
+            <a href="#about">About</a>
+        </div>
+        
+        <div class="side-menu-divider"></div>
+        
+        <div class="side-menu-contact">
+            <p class="contact-title">The Atelier</p>
+            <p>12/A Heritage Mile, South Mumbai</p>
+            <p>hello@darpanluxe.com</p>
+            <a href="#contact" class="btn-solid-gold w-full mt-small">Book Appointment</a>
+        </div>
+    </nav>
 
     <main>
         <section id="hero" class="hero-section">
