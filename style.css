@@ -415,3 +415,65 @@ ul {
     transform: translateX(-50%) translateY(0);
     opacity: 1;
 }
+/* ==========================================
+   10. LUXURY CUSTOM CURSOR
+========================================== */
+
+/* Only apply this on devices with a physical mouse */
+@media (pointer: fine) {
+    /* Hide the default system cursor everywhere */
+    body, a, button, input, .menu-toggle-btn, .wishlist-btn {
+        cursor: none !important;
+    }
+
+    /* Base styles for both cursor parts */
+    .cursor-dot, .cursor-square {
+        position: fixed;
+        top: 0; 
+        left: 0;
+        pointer-events: none; /* Ensures the cursor doesn't block you from clicking things! */
+        z-index: 9999;
+    }
+
+    /* The tiny solid centre dot */
+    .cursor-dot {
+        width: 4px;
+        height: 4px;
+        background-color: var(--brown);
+        margin: -2px 0 0 -2px; /* Centres the dot exactly on the coordinates */
+        transition: opacity 0.3s ease;
+    }
+
+    /* The trailing hollow square */
+    .cursor-square {
+        width: 30px;
+        height: 30px;
+        border: 1px solid var(--gold);
+        margin: -15px 0 0 -15px; /* Centres the square */
+        /* We transition the size, colour, and rotation, but NOT the position (JS handles that) */
+        transition: width 0.3s ease, height 0.3s ease, margin 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    /* --- THE HOVER STATE (The Diamond Effect) --- */
+    .cursor-square.hovering {
+        width: 45px;
+        height: 45px;
+        margin: -22.5px 0 0 -22.5px;
+        background-color: rgba(207, 181, 59, 0.1); /* A soft gold wash */
+        border-color: var(--brown);
+    }
+
+    /* The inner div handles the rotation so it doesn't fight with the JS positioning */
+    .cursor-square::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border: inherit;
+        background-color: inherit;
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .cursor-square.hovering::after {
+        transform: rotate(45deg); /* Snaps into a beautiful diamond on hover */
+    }
+}
