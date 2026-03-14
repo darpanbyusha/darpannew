@@ -336,9 +336,28 @@ ul {
     stroke: var(--copper);
 }
 /* --- LATEST DESIGNS TEXT --- */
-.design-info { margin-top: 15px; text-align: left; }
-.design-name { font-size: 1.125rem; font-family: var(--font-body); margin-bottom: 2px; }
-.archive-ref { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.5; }
+.design-info { 
+    margin-top: 15px; 
+    text-align: left; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 4px; /* Adjust this number to bring the text closer or further apart */
+}
+
+.design-name { 
+    font-size: 1.125rem; 
+    font-family: var(--font-body); 
+    margin: 0; /* This kills the annoying default browser top-padding! */
+    line-height: 1.2;
+}
+
+.archive-ref { 
+    font-size: 0.65rem; 
+    text-transform: uppercase; 
+    letter-spacing: 0.15em; 
+    opacity: 0.5; 
+    margin: 0; /* Keeps it perfectly flush with the name */
+}
 
 /* --- HEADER FAVOURITES BADGE --- */
 .favourites-btn { position: relative; display: flex; align-items: center; cursor: pointer; }
