@@ -78,6 +78,24 @@ ul {
 .header-left, .header-right { flex: 1; display: flex; align-items: center; gap: 30px; }
 .header-right { justify-content: flex-end; }
 .header-centre { flex: 1; text-align: center; }
+/* --- Taming the Image Logo & Colour Swapping --- */
+.site-logo {
+    height: 40px; 
+    width: auto; 
+    display: block;
+    margin: 0 auto; 
+    
+    /* NEW: Turns your black PNG completely white! */
+    filter: invert(1); 
+    
+    /* Added 'filter' to the transition so it changes colour smoothly */
+    transition: transform 0.4s ease, filter 0.4s ease; 
+}
+
+/* NEW: Returns the logo to its natural black when the header turns white */
+.site-header.scrolled .site-logo {
+    filter: invert(0); 
+}
 
 .logo { font-size: 2rem; letter-spacing: 0.2em; font-weight: 700; font-family: var(--font-heading); }
 .header-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
