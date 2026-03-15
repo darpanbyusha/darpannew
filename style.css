@@ -52,6 +52,7 @@ ul {
 
 .section-padding { padding-left: var(--pad-x); padding-right: var(--pad-x); }
 .py-large { padding-top: 100px; padding-bottom: 100px; }
+.py-medium { padding-top: 60px; padding-bottom: 60px; }
 .mb-large { margin-bottom: 60px; }
 .mb-small { margin-bottom: 24px; }
 
@@ -236,70 +237,70 @@ ul {
 
 /* --- VOICES OF ELEGANCE: TESTIMONIAL SLIDER --- */
 
-/* The subtle silk/fabric background texture */
 .texture-bg {
     background-color: var(--cream);
-    /* This creates a very faint, elegant woven pattern behind the text */
     background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l10 10M11 1L1 11' stroke='%23B87333' stroke-width='0.5' stroke-opacity='0.05' fill='none'/%3E%3C/svg%3E");
 }
 
-/* Forces the elements to sit above the background texture */
 .relative { position: relative; }
 .z-10 { z-index: 10; }
 
-.testimonial-slider {
-    position: relative;
-    max-width: 900px;
-    margin: 0 auto;
-    min-height: 380px; /* This locks the height so the page never jumps */
+/* Forces the gap between the copper line and the subheading */
+.divider-copper { 
+    width: 100px; 
+    height: 1px; 
+    background-color: var(--copper); 
+    margin: 0 auto 20px auto; 
 }
 
-/* Using Flexbox to anchor the stars to the top and author to the bottom */
+/* THE ANTI-JUMP SLIDER GRID */
+.testimonial-slider {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: "slide-stack"; /* Stacks all slides in the exact same spot */
+}
+
 .testimonial-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    grid-area: slide-stack;
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+    pointer-events: none;
+    transition: opacity 0.8s ease-in-out; /* Pure, glitch-free opacity fade */
     text-align: center;
     
-    /* The Anchoring Magic */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between; 
 }
 
 .testimonial-slide.active {
     opacity: 1;
-    visibility: visible;
-    position: relative; 
+    pointer-events: auto;
+    z-index: 2;
 }
 
 .stars { color: var(--gold); font-size: 1.5rem; letter-spacing: 4px; }
 
-/* The sponge that absorbs the extra space for short reviews */
+/* THE LOCKED HEIGHT BOX */
+/* This stops the names from jumping. It forces the text area to be exactly 140px tall always */
 .quote-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-grow: 1; 
-    padding: 30px 0;
+    height: 140px; 
+    width: 100%;
+    margin: 20px 0;
 }
 
-/* Much larger, editorial review text */
 .testimonial-quote {
-    font-size: 2.25rem; 
+    font-size: 2rem; /* Slightly refined size to sit beautifully in the locked box */
     line-height: 1.4;
     color: var(--brown);
     margin: 0;
     font-weight: 300;
 }
 
-/* The subtle copper accent line dividing the quote and the author */
 .accent-line {
     width: 40px;
     height: 1px;
@@ -307,12 +308,13 @@ ul {
     margin: 0 auto 20px auto;
 }
 
-.author-name { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 700; color: var(--brown); }
-.author-meta { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; margin-top: 5px; }
+.author-name { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 700; color: var(--brown); margin-bottom: 4px; }
+.author-meta { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; margin: 0; }
 
-/* The Bottom Rating Text */
-.mt-large { margin-top: 60px; }
-.rating-text { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; }
+.mt-large { margin-top: 40px; } /* Reduced from 60px to tighten up the bottom */
+
+/* Enlarged Rating Text */
+.rating-text { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; }
 .text-gold { color: var(--gold); }
 
 .cta-container { max-width: 700px; margin: 0 auto; }
