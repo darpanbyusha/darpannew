@@ -17,6 +17,7 @@ section {
     --gold: #CFB53B;
     --white: #FFFFFF;
     --black: #000000;
+    --red: #9b111e;
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Manrope', sans-serif;
     
@@ -625,7 +626,7 @@ button.btn-solid-gold {
 
 /* The beating pop effect when filled with Ruby Red */
 .wishlist-btn.active svg {
-    fill: #9B111E; 
+    fill: #9b111e; 
     stroke: #9B111E;
     animation: heartPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
@@ -1054,7 +1055,7 @@ button.btn-solid-gold {
 .wishlist-btn svg {
     width: 18px;
     height: 18px;
-    stroke: var(--brown);
+    stroke: var(--gold);
     transition: fill 0.3s ease, stroke 0.3s ease;
 }
 
@@ -1064,8 +1065,8 @@ button.btn-solid-gold {
 
 /* When a user clicks it, it fills with copper */
 .wishlist-btn.active svg {
-    fill: var(--copper);
-    stroke: var(--copper);
+    fill: var(--red);
+    stroke: var(--red);
 }
 
 /* Ensures the image frame keeps everything contained */
