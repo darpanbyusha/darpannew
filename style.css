@@ -953,3 +953,30 @@ button.btn-solid-gold {
 .gallery-item.hidden {
     display: none;
 }
+/* --- HEADER SOLID LOGIC --- */
+/* Forces the logo to display in its natural black colour on the white header */
+.header-solid .site-logo {
+    filter: none !important; 
+}
+
+/* --- GRID RESPONSIVENESS (4 to 3 to 2) --- */
+.grid-4-col {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px; /* Adjust this to match your homepage gap perfectly */
+}
+
+/* Tablet (Screens under 1024px) */
+@media (max-width: 1024px) {
+    .grid-4-col { 
+        grid-template-columns: repeat(3, 1fr); 
+    }
+}
+
+/* Mobile (Screens under 768px) */
+@media (max-width: 768px) {
+    .grid-4-col { 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 15px; /* Slightly tighter gaps on mobile */
+    }
+}
