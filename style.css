@@ -416,23 +416,21 @@ ul {
     opacity: 1;
 }
 /* ==========================================
-   10. LUXURY HARDWARE CURSOR (Zero Lag)
+   10. LUXURY HARDWARE CURSOR (Larger & Borderless)
 ========================================== */
 
-/* Only apply this on devices with a physical mouse */
 @media (pointer: fine) {
     
-    /* 1. The Default Golden Tilted Arrow */
+    /* 1. The Larger Golden Tilted Arrow (No Stroke, Richer Shadow) */
     body {
-        cursor: url("data:image/svg+xml;charset=utf-8,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='shadow'%3E%3CfeDropShadow dx='1' dy='2' stdDeviation='1.5' flood-color='%23000' flood-opacity='0.25'/%3E%3C/filter%3E%3Cpath d='M6 4 L22 11 L14 14 L11 22 Z' fill='%23CFB53B' stroke='%232B1B17' stroke-width='1' stroke-linejoin='round' filter='url(%23shadow)'/%3E%3C/svg%3E") 6 4, auto !important;
+        cursor: url("data:image/svg+xml;charset=utf-8,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='shadow'%3E%3CfeDropShadow dx='1' dy='3' stdDeviation='2' flood-color='%23000' flood-opacity='0.35'/%3E%3C/filter%3E%3Cpath d='M6 4 L30 14 L18 18 L14 30 Z' fill='%23CFB53B' filter='url(%23shadow)'/%3E%3C/svg%3E") 6 4, auto !important;
     }
 
-    /* 2. The Golden Diamond (When hovering over clickable items) */
+    /* 2. The Golden Diamond Hover State */
     a, button, input, .menu-toggle-btn, .wishlist-btn, .experience-item {
-        cursor: url("data:image/svg+xml;charset=utf-8,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='shadow'%3E%3CfeDropShadow dx='0' dy='2' stdDeviation='1.5' flood-color='%23000' flood-opacity='0.25'/%3E%3C/filter%3E%3Cpolygon points='16,4 24,12 16,20 8,12' fill='%23CFB53B' stroke='%232B1B17' stroke-width='1' filter='url(%23shadow)'/%3E%3C/svg%3E") 16 12, pointer !important;
+        cursor: url("data:image/svg+xml;charset=utf-8,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='shadow'%3E%3CfeDropShadow dx='0' dy='3' stdDeviation='2' flood-color='%23000' flood-opacity='0.35'/%3E%3C/filter%3E%3Cpolygon points='20,6 34,20 20,34 6,20' fill='%23CFB53B' filter='url(%23shadow)'/%3E%3C/svg%3E") 20 20, pointer !important;
     }
     
-    /* Ensure the custom cursor overrides standard text selectors */
     p, h1, h2, h3, h4, h5, h6, span {
         cursor: inherit;
     }
