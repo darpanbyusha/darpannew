@@ -414,7 +414,12 @@ ul {
    7. FOOTER
 ========================================== */
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 80px; }
-.footer-logo { font-size: 1.5rem; color: var(--gold); margin-bottom: 20px; letter-spacing: 0.1em; }
+.footer-logo {
+    max-width: 180px; /* keeps it proportional */
+    height: auto;
+    display: block;
+    margin-bottom: 12px;
+}
 .footer-brand p { font-size: 0.875rem; opacity: 0.6; max-width: 300px; }
 .footer-links h5, .footer-newsletter h5 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.4; margin-bottom: 24px; }
 .footer-links li { margin-bottom: 15px; font-size: 0.875rem; }
