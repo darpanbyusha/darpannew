@@ -598,3 +598,14 @@ ul {
         cursor: inherit;
     }
 }
+.section-subheading a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.section-subheading a:hover {
+    opacity: 0.8;
+}
