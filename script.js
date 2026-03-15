@@ -33,28 +33,35 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 2. The Darpan Experience Interactive Image Swap
+    // 2. The Darpan Experience: Calm Click Interaction
     const experienceItems = document.querySelectorAll('.experience-item');
     const displayImg = document.getElementById('experience-image');
 
-    experienceItems.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-            // Remove active class from all items
-            experienceItems.forEach(i => i.classList.remove('active'));
-            
-            // Add active class to hovered item
-            item.classList.add('active');
+    if (experienceItems.length > 0 && displayImg) {
+        experienceItems.forEach(item => {
+            // CHANGED from 'mouseenter' to 'click'
+            item.addEventListener('click', () => {
+                
+                // If they click the one that is already open, do nothing
+                if (item.classList.contains('active')) return;
 
-            // Swap the image with a smooth crossfade
-            const newSrc = item.getAttribute('data-img');
-            displayImg.style.opacity = '0';
-            
-            setTimeout(() => {
-                displayImg.src = newSrc;
-                displayImg.style.opacity = '1';
-            }, 250); // Matches the CSS transition timing
+                // 1. Close all other items smoothly
+                experienceItems.forEach(i => i.classList.remove('active'));
+                
+                // 2. Open the clicked item
+                item.classList.add('active');
+
+                // 3. Cinematic Image Swap (Slower cross-fade)
+                const newSrc = item.getAttribute('data-img');
+                displayImg.style.opacity = '0';
+                
+                setTimeout(() => {
+                    displayImg.src = newSrc;
+                    displayImg.style.opacity = '1';
+                }, 400); // 400ms creates a much calmer, heritage feel
+            });
         });
-    });
+    }
     // --- FAVOURITES LOGIC & TOAST NOTIFICATION ---
     const favBtns = document.querySelectorAll('.wishlist-btn');
     const favCountDisplay = document.getElementById('fav-count');

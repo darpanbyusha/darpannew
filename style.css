@@ -214,21 +214,63 @@ ul {
 .design-info h4 { font-size: 1.125rem; font-family: var(--font-body); }
 .price { font-weight: 500; font-size: 1rem; }
 
-/* ==========================================
-   5. DARPAN EXPERIENCE
-========================================== */
-.experience-section { display: flex; min-height: 100vh; background-color: var(--brown); color: var(--cream); }
-.experience-img-side { width: 50%; overflow: hidden; }
-.experience-img-side img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.5s ease; }
+/* --- THE DARPAN EXPERIENCE: CLICK ACCORDION --- */
+.experience-item { 
+    border-bottom: 1px solid rgba(245, 245, 220, 0.2); 
+    padding-bottom: 24px; 
+    margin-bottom: 24px; 
+    cursor: pointer; 
+    transition: border-color 0.6s ease; 
+}
 
-.experience-text-side { width: 50%; padding: 100px; display: flex; flex-direction: column; justify-content: center; }
-.experience-item { border-bottom: 1px solid rgba(245, 245, 220, 0.2); padding-bottom: 24px; margin-bottom: 24px; cursor: pointer; }
-.experience-item h3 { font-size: 1.5rem; display: flex; align-items: center; gap: 20px; transition: color 0.3s ease; }
-.experience-item h3 span { font-size: 0.875rem; opacity: 0.5; font-family: var(--font-body); }
-.experience-item p { max-height: 0; overflow: hidden; opacity: 0; transition: all 0.4s ease; font-size: 0.875rem; color: rgba(245, 245, 220, 0.7); margin-top: 0; }
+.experience-item h3 { 
+    font-size: 1.5rem; 
+    display: flex; 
+    align-items: center; 
+    gap: 20px; 
+    transition: color 0.5s ease, transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); 
+}
 
-.experience-item.active h3, .experience-item:hover h3 { color: var(--gold); }
-.experience-item.active p { max-height: 100px; opacity: 1; margin-top: 15px; }
+.experience-item h3 span { 
+    font-size: 0.875rem; 
+    opacity: 0.5; 
+    font-family: var(--font-body); 
+}
+
+/* The hidden text state */
+.experience-item p { 
+    max-height: 0; 
+    overflow: hidden; 
+    opacity: 0; 
+    font-size: 0.875rem; 
+    color: rgba(245, 245, 220, 0.7); 
+    margin-top: 0; 
+    /* The easing makes the height collapse beautifully and calmly */
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, margin-top 0.4s ease; 
+}
+
+/* --- THE ACTIVE (CLICKED) STATE --- */
+.experience-item.active {
+    border-bottom-color: var(--gold);
+}
+
+.experience-item.active h3 { 
+    color: var(--gold); 
+    transform: translateX(15px); /* An elegant, editorial indent */
+}
+
+.experience-item.active p { 
+    max-height: 120px; /* Safe fixed height to prevent bottom jumping */
+    opacity: 1; 
+    margin-top: 15px; 
+    /* Delays the text fade-in slightly so the box opens first */
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease 0.2s, margin-top 0.4s ease; 
+}
+
+/* A faint gold hover so they know it is clickable, but without opening it */
+.experience-item:not(.active):hover h3 {
+    color: rgba(207, 181, 59, 0.6); 
+}
 
 /* ==========================================
    6. INSTAGRAM & TESTIMONIALS & CTA
