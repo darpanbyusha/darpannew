@@ -1007,6 +1007,7 @@ button.btn-solid-gold {
 /* A specific class just for this page so we don't rely on the massive homepage paddings */
 .pt-gallery {
     padding-top: 120px; /* Just enough to clear the sticky header elegantly */
+    padding-bottom: 80px; /* Just enough to clear the sticky header elegantly */
 }
 
 /* --- 3. THE 4-3-2 RESPONSIVE GRID --- */
