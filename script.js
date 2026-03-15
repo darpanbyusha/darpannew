@@ -164,4 +164,37 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+    // --- NAVIGATION MODAL LOGIC (3-Button Version) ---
+    const navModal = document.getElementById('nav-contact-modal');
+    // Finds all links in the header/menu with this class
+    const openNavBtns = document.querySelectorAll('.open-nav-popup'); 
+
+    if (navModal) {
+        const closeNavBtn = navModal.querySelector('.close-nav-btn');
+
+        // 1. Open the Nav Modal
+        openNavBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                navModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; 
+            });
+        });
+
+        // 2. Close the Nav Modal (Clicking the 'X')
+        if (closeNavBtn) {
+            closeNavBtn.addEventListener('click', () => {
+                navModal.classList.remove('active');
+                document.body.style.overflow = ''; 
+            });
+        }
+
+        // 3. Close the Nav Modal (Clicking the dark background)
+        navModal.addEventListener('click', (e) => {
+            if (e.target === navModal) {
+                navModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
 });
