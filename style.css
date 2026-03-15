@@ -1141,6 +1141,6 @@ button.btn-solid-gold {
 /* Ensures the Heart Counter Text stays readable */
 .site-header.scrolled .fav-count,
 .site-header.header-solid .fav-count {
-    color: var(--cream) !important;
-    background-color: var(--brown) !important;
+    color: var(--brown) !important;
+    background-color: var(--gold) !important;
 }
