@@ -157,6 +157,11 @@ ul {
 .side-menu-links { display: flex; flex-direction: column; gap: 35px; }
 .side-menu-links a { font-family: var(--font-heading); font-size: 2.5rem; transition: color 0.3s ease; }
 .side-menu-links a:hover { color: var(--gold); }
+/* --- ACTIVE PAGE HIGHLIGHT --- */
+.side-menu-links a.current-page {
+    color: var(--gold);
+    pointer-events: none; /* Stops the hover effect and prevents clicking */
+}
 
 .side-menu-divider { width: 100%; height: 1px; background-color: rgba(43, 27, 23, 0.1); margin: 50px 0; }
 
