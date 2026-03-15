@@ -980,3 +980,104 @@ button.btn-solid-gold {
         gap: 15px; /* Slightly tighter gaps on mobile */
     }
 }
+/* ==========================================
+   DESIGNS PAGE FIXES
+========================================== */
+
+/* --- 1. FIXING THE INVISIBLE HEADER ICONS --- */
+/* Forces the SVG icons (Search, Heart) to be dark brown on the white header */
+.header-solid .search-btn svg,
+.header-solid .favourites-btn svg {
+    stroke: var(--brown) !important; 
+}
+
+/* Forces the 3 lines of the hamburger menu to be dark brown */
+.header-solid .hamburger-icon span {
+    background-color: var(--brown) !important;
+}
+
+/* Fixes the little counter number on the heart icon */
+.header-solid .fav-count {
+    background-color: var(--brown) !important;
+    color: var(--cream) !important;
+}
+
+/* --- 2. THE TOP GAP FIX --- */
+/* A specific class just for this page so we don't rely on the massive homepage paddings */
+.pt-gallery {
+    padding-top: 120px; /* Just enough to clear the sticky header elegantly */
+}
+
+/* --- 3. THE 4-3-2 RESPONSIVE GRID --- */
+/* Desktop: 4 Columns */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px; /* Matches standard homepage gaps */
+}
+
+/* Tablet: 3 Columns */
+@media (max-width: 1024px) {
+    .gallery-grid { 
+        grid-template-columns: repeat(3, 1fr); 
+    }
+}
+
+/* Mobile: 2 Columns */
+@media (max-width: 768px) {
+    .gallery-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 16px; /* Slightly tighter on mobile so images don't get too tiny */
+    }
+}
+
+/* --- 4. THE HEART ICON (FAVOURITES) --- */
+/* Ensures the wishlist button looks exactly like the homepage version */
+.wishlist-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--white);
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* Soft luxury shadow */
+    transition: transform 0.3s ease;
+    z-index: 10;
+}
+
+.wishlist-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke: var(--brown);
+    transition: fill 0.3s ease, stroke 0.3s ease;
+}
+
+.wishlist-btn:hover {
+    transform: scale(1.08); /* Slight pop on hover */
+}
+
+/* When a user clicks it, it fills with copper */
+.wishlist-btn.active svg {
+    fill: var(--copper);
+    stroke: var(--copper);
+}
+
+/* Ensures the image frame keeps everything contained */
+.img-4x5 {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background-color: var(--cream);
+}
+
+.img-4x5 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
