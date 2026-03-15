@@ -185,7 +185,7 @@ ul {
 
 .btn-outline-gold {
     display: inline-block; padding: 16px 40px; border: 1px solid var(--gold);
-    color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.875rem;
+    color: var(--brown); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.875rem;
     transition: all 0.3s ease;
 }
 .btn-outline-gold:hover { background-color: var(--gold); color: var(--brown); }
