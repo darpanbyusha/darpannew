@@ -893,3 +893,63 @@ button.btn-solid-gold {
         margin-top: 10px; 
     }
 }
+
+
+/* ==========================================
+   DESIGN PAGE CSS
+========================================== */
+
+/* The Solid Header for Internal Pages */
+.header-solid {
+    background-color: var(--white); /* Crisp white background */
+    border-bottom: 1px solid rgba(43, 27, 23, 0.05); /* Very faint dividing line */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02); /* Faint drop shadow */
+}
+
+/* Ensure header links are dark brown on the white background */
+.header-solid .nav-link, 
+.header-solid .logo-text {
+    color: var(--brown) !important; 
+}
+
+/* Page Spacing Utilities */
+.pt-vlarge { padding-top: 140px; } /* Gives room so the header doesn't cover the title */
+.max-w-screen { max-width: 1400px; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+/* The Filter Buttons */
+.filter-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.filter-btn {
+    background: none;
+    border: none;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: rgba(43, 27, 23, 0.5); /* Dimmed brown */
+    cursor: pointer;
+    padding-bottom: 5px;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+/* Hover and Active State for Filters */
+.filter-btn:hover, 
+.filter-btn.active {
+    color: var(--brown);
+    border-bottom-color: var(--copper); /* Elegant copper underline when selected */
+}
+
+/* Gallery Item Animation */
+.gallery-item {
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* A class applied by Javascript when items are filtered out */
+.gallery-item.hidden {
+    display: none;
+}

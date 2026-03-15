@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DARPAN by Usha | Bespoke Indian Couture</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<header class="header-main header-solid sticky-top">
+<div class="header-left">
+            <button class="menu-toggle-btn" id="open-menu-btn">
+                <div class="hamburger-icon">
+                    <span></span><span></span><span></span>
+                </div>
+                <span class="header-label hidden-mobile">Menu</span>
+            </button>
+        </div>
+        
+<div class="header-centre">
+        <a href="#" class="logo-link">
+            <img src="images/logo.png" alt="DARPAN by Usha" class="site-logo">
+        </a>
+    </div>
+        
+        <div class="header-right">
+            <button class="search-btn" aria-label="Search">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+            
+            <a href="#favourites" class="favourites-btn" aria-label="Favourites">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+                <span id="fav-count" class="fav-count">0</span>
+            </a>
+
+            <a href="#" class="btn-header-contact hidden-mobile open-nav-popup">Contact Us</a>
+        </div>
+
+    </header>
+
+<main class="pt-vlarge pb-large bg-cream">
+    
+    <div class="text-center mb-large px-small">
+        <h1 class="section-heading italic">The Archive</h1>
+        <div class="divider-copper mb-small"></div>
+        <p class="section-subheading">Explore our portfolio of bespoke craftsmanship.</p>
+    </div>
+
+    <div class="filter-container text-center mb-large">
+        <button class="filter-btn active" data-filter="all">All Designs</button>
+        <button class="filter-btn" data-filter="bridal">Bridal & Trousseau</button>
+        <button class="filter-btn" data-filter="pret">Luxury Prêt</button>
+        <button class="filter-btn" data-filter="sarees">Heritage Sarees</button>
+    </div>
+
+    <div class="grid-4-col gallery-grid px-medium max-w-screen mx-auto">
+        
+        <div class="design-card gallery-item" data-category="bridal">
+            <div class="img-wrapper aspect-portrait">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxR4iEeWAMWHma6OOhThC5nLzpF1WpJzRmflb5TNLscPe5V6WgKVY5ZBO9_bWZAVlcLw72LOPLEtcfEhc79Pdc5g4wcJxXTAkZZgjbRCTdl-fnYF_ahrFVcGcfowRHYTbD5nbyRwhc8C0R1FIQ0S9DoMHeGri42jWBV8TDqLrPPNCPmhrFR8qMP_jCnUx0Ylr9peGLRhwoXAgC6hoO_Gfv0e9qqDUcYHtQrtYwj-RhZeGxZsz-TeQGR7794vmt5aLwOKPi6wgJsx4" alt="Bridal Lehenga" class="design-img">
+            </div>
+            <div class="design-info text-center mt-small">
+                <h3 class="design-title text-brown">Zardozi Lehenga</h3>
+                <p class="design-meta text-gold">Bridal</p>
+            </div>
+        </div>
+
+        <div class="design-card gallery-item" data-category="pret">
+            <div class="img-wrapper aspect-portrait">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqX-VxSKO1diZ2dKBgF41Mxts0FP1wlGV3JVh9mdBBr4Wd5aan0D0SX4d9cv5Iw2jPjuA9bePr8d4JXv9USaYx1t84k7BEqXWWrPxyC6nauax3x1tZ-FqfCCwECUyXyzrixdP-XDB_uw8hosdR0p51e-lJ98WvWAnKu89ecVODeR_Z17xyEUUEXlCzIbKvBaIHYOD6LJJbOzdkzthHPTNwmXvt6rvsAPm9JiSzV2sfD-c3CpiTm6SoJiceyNotAhdH2quua1mKn1Q" alt="Silk Suit" class="design-img">
+            </div>
+            <div class="design-info text-center mt-small">
+                <h3 class="design-title text-brown">Banarasi Silk Kurta</h3>
+                <p class="design-meta text-gold">Luxury Prêt</p>
+            </div>
+        </div>
+
+        <div class="design-card gallery-item" data-category="sarees">
+            <div class="img-wrapper aspect-portrait">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkY9KF9T37fmryq3ZANY8-iii9ulTZGu8hBMmUoLd9MhWEUYNSSwZdu_AOFeP6euPocAnf0UldX-PNOG8C5xoSzpO6sMC_bDMzTElyL0fZKtErljnyvKTBHP8AdJzdome62kkabORJZ42867fkeQUbeOXgf_YuVJc6FcKnRQHXl-PGDuiKSWoSCo306zAX8g2V-j8yrV1A-eDWgKt2SCd1OU79dmrTZdbVSf3BHDjC0fWYbpBHSU6Zz5EkI4WBHvfBNagVv_ikclM" alt="Kanjeevaram Saree" class="design-img">
+            </div>
+            <div class="design-info text-center mt-small">
+                <h3 class="design-title text-brown">Woven Kanjeevaram</h3>
+                <p class="design-meta text-gold">Heritage Sarees</p>
+            </div>
+        </div>
+
+        </div>
+</main>
+
+<!-- FOOTER-->
+
+    <footer class="site-footer bg-brown text-cream section-padding">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="/">
+                <img src="images/logo.png" alt="DARPAN by Usha" class="footer-logo">
+                </a>
+                <p>Creating beautifully tailored pieces since 2009.<br>Rooted in tradition, crafted to fit you.</p>
+            </div>
+
+            <div class="footer-links">
+                <h5>Shop</h5>
+                <ul>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Bridal Couture</a></li>
+                    <li><a href="#">Pret Collection</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h5>Client Care</h5>
+                <ul>
+                    <li><a href="#">Bespoke Orders</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h5>Newsletter</h5>
+                <p>Join our circle for exclusive previews.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Email Address">
+                    <button type="submit">Join</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Proudly Crafted in भारत 🇮🇳 &bull; Est. 2009</p>
+            <p>&copy; 2026 DARPAN Luxury. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+
+
+<!-- POP UP FOR FAVOURITES-->
+
+    <div id="toast-container" class="toast-notification">Added to your favourites</div>
+    <script src="script.js"></script>
+
+
+
+<!-- POP UP FOR CALL BUTTON-->
+
+    <div id="contact-modal" class="modal-overlay">
+        <div class="modal-box">
+            
+            <button id="close-modal" class="close-btn" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <h3 class="modal-title text-brown mb-small">Get in Touch</h3>
+            <p class="modal-text mb-medium">
+                We would be delighted to assist you. How would you prefer to reach out?
+            </p>
+            
+            <div class="modal-actions">
+                <a href="tel:+919213841471" class="btn-solid-gold w-full mb-small">
+                    <i class="fas fa-phone"></i> Call Us
+                </a>
+                
+                <a href="https://wa.me/919213841471" target="_blank" rel="noopener noreferrer" class="btn-outline-gold w-full">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Us
+                </a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="nav-contact-modal" class="modal-overlay">
+        <div class="modal-box">
+            
+            <button class="close-btn close-nav-btn" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <h3 class="modal-title text-brown mb-small">Get in Touch</h3>
+            <p class="modal-text mb-medium">
+                We would be delighted to assist you. How would you prefer to reach out?
+            </p>
+            
+            <div class="modal-actions">
+                <a href="tel:+919213841471" class="btn-solid-gold w-full mb-small">
+                    <i class="fas fa-phone"></i> Call Us
+                </a>
+                
+                <a href="https://wa.me/919213841471" target="_blank" rel="noopener noreferrer" class="btn-outline-gold w-full mb-small">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Us
+                </a>
+
+                <a href="http://googleusercontent.com/maps.google.com/YOUR_LINK" target="_blank" rel="noopener noreferrer" class="btn-outline-gold w-full">
+                    <i class="fas fa-map-marker-alt"></i> Get Directions
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

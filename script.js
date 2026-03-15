@@ -197,4 +197,40 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
+    // --- DESIGN PAGE JS---
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    if (filterBtns.length > 0 && galleryItems.length > 0) {
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                
+                // 1. Remove 'active' class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                
+                // 2. Add 'active' to the clicked button
+                btn.classList.add('active');
+
+                // 3. Get the category to filter by (e.g., 'bridal', 'sarees')
+                const filterValue = btn.getAttribute('data-filter');
+
+                // 4. Loop through all images and show/hide them
+                galleryItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.classList.remove('hidden');
+                        // Tiny delay to allow display:block to register before fading in
+                        setTimeout(() => item.style.opacity = '1', 50);
+                    } else {
+                        item.classList.add('hidden');
+                        item.style.opacity = '0';
+                    }
+                });
+            });
+        });
+    }
+
+
+
+    
 });
