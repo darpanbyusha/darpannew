@@ -83,7 +83,7 @@ ul {
 .site-header {
     position: fixed; top: 0; left: 0; width: 100%; z-index: 50;
     display: flex; justify-content: space-between; align-items: center;
-    padding: 24px var(--pad-x); color: var(--white);
+    padding: 24px var(--pad-x); color: var(--black);
     transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
 }
 
@@ -989,18 +989,18 @@ button.btn-solid-gold {
 /* Forces the SVG icons (Search, Heart) to be dark brown on the white header */
 .header-solid .search-btn svg,
 .header-solid .favourites-btn svg {
-    stroke: var(--brown) !important; 
+    stroke: var(--black) !important; 
 }
 
 /* Forces the 3 lines of the hamburger menu to be dark brown */
 .header-solid .hamburger-icon span {
-    background-color: var(--brown) !important;
+    background-color: var(--black) !important;
 }
 
 /* Fixes the little counter number on the heart icon */
 .header-solid .fav-count {
-    background-color: var(--brown) !important;
-    color: var(--cream) !important;
+    background-color: var(--gold) !important;
+    color: var(--brown) !important;
 }
 
 /* --- 2. THE TOP GAP FIX --- */
@@ -1055,7 +1055,7 @@ button.btn-solid-gold {
 .wishlist-btn svg {
     width: 18px;
     height: 18px;
-    stroke: var(--gold);
+    stroke: var(--red);
     transition: fill 0.3s ease, stroke 0.3s ease;
 }
 
