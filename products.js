@@ -5,7 +5,7 @@ const darpanDesigns = [
         name: "Zardozi Silk Blouse",
         category: "blouses",
         collectionName: "Heritage Classics",
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDxR4iEeWAMWHma6OOhThC5nLzpF1WpJzRmflb5TNLscPe5V6WgKVY5ZBO9_bWZAVlcLw72LOPLEtcfEhc79Pdc5g4wcJxXTAkZZgjbRCTdl-fnYF_ahrFVcGcfowRHYTbD5nbyRwhc8C0R1FIQ0S9DoMHeGri42jWBV8TDqLrPPNCPmhrFR8qMP_jCnUx0Ylr9peGLRhwoXAgC6hoO_Gfv0e9qqDUcYHtQrtYwj-RhZeGxZsz-TeQGR7794vmt5aLwOKPi6wgJsx4",
+        image: "images/dresses.png",
         topRated: true,  // Set to true to show on Homepage
         isNew: true      // For future use
     },
