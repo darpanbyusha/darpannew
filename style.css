@@ -741,7 +741,7 @@ button.btn-solid-gold {
 
 /* The Straight-Edged Box */
 .modal-box {
-    background-color: var(--cream);
+    background-color: var(--white);
     padding: 50px 40px;
     border-radius: 0; /* Sharp, geometric corners */
     max-width: 450px;
@@ -762,7 +762,6 @@ button.btn-solid-gold {
     transform: translateY(0);
 }
 
-/* The 'X' Close Button */
 .close-btn {
     position: absolute;
     top: 15px;
@@ -773,6 +772,7 @@ button.btn-solid-gold {
     color: var(--brown);
     cursor: pointer;
     transition: color 0.3s ease;
+    z-index: 100; /* THE FIX: Forces the cross to the very top layer */
 }
 
 .close-btn:hover {
@@ -1205,7 +1205,7 @@ button.btn-solid-gold {
 
 /* 1. The Main Box Container */
 .qv-box {
-    background-color: var(--cream);
+    background-color: var(--box);
     width: 95%;
     max-width: 1000px; 
     position: relative;
