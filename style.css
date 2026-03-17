@@ -1200,72 +1200,77 @@ button.btn-solid-gold {
     }
 }
 /* ==========================================
-   QUICK VIEW MODAL
+   QUICK VIEW MODAL (MINIMALIST)
 ========================================== */
 
-/* The Quick View Box Container */
 .qv-box {
     background-color: var(--cream);
     width: 95%;
-    max-width: 1000px; /* A massive, luxurious canvas */
-    max-height: 90vh;
-    display: flex;
-    flex-direction: column;
+    max-width: 1000px; 
     position: relative;
     transform: translateY(30px);
     transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-    overflow: hidden; /* Enforces the sharp outer edges */
+    box-shadow: 0 15px 50px rgba(0,0,0,0.15); /* Softer, deeper luxury shadow */
+    border: none;
 }
 
 .modal-overlay.active .qv-box { 
     transform: translateY(0); 
 }
 
-/* The Inner Split Layout */
+/* Locked height creates a framed 'lookbook' feel */
 .qv-content { 
     display: flex; 
     width: 100%; 
-    height: 100%; 
+    height: 60vh; 
+    min-height: 500px;
+    max-height: 700px;
 }
 
-/* Left Image Canvas */
+/* Image gets 55% of the space to dominate the visual */
 .qv-image-side { 
-    width: 50%; 
-    background: var(--white); 
+    width: 55%; 
+    height: 100%;
 }
 
 .qv-image-side img { 
     width: 100%; 
     height: 100%; 
-    object-fit: cover; /* Prevents the photo from squishing */
-    max-height: 80vh; 
+    object-fit: cover; 
 }
 
-/* Right Text Canvas */
+/* Text side gets 45% and perfect vertical centering */
 .qv-text-side { 
-    width: 50%; 
-    padding: 60px; 
+    width: 45%; 
     display: flex; 
-    flex-direction: column; 
+    align-items: center; 
     justify-content: center; 
-    text-align: left; 
+    padding: 0 10%; /* Responsive breathing room on the sides */
 }
 
-/* Typography specific to the Quick View */
-.qv-collection { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 10px; font-weight: 700; }
-.qv-title { font-size: 2.5rem; margin-bottom: 5px; line-height: 1.1; }
-.qv-desc { font-size: 0.95rem; line-height: 1.6; color: rgba(43, 27, 23, 0.8); }
+.qv-text-inner {
+    width: 100%;
+    text-align: left;
+}
 
-/* --- MOBILE RESPONSIVENESS (Stacks vertically) --- */
+/* Ultra-clean typography */
+.qv-collection { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 700; margin-bottom: 15px; }
+.qv-title { font-size: 2.75rem; margin-bottom: 5px; line-height: 1.1; }
+
+/* The margin-bottom on the reference number pushes the button down natively */
+.qv-text-inner .archive-ref { font-size: 0.75rem; margin-bottom: 50px; }
+
+
+/* --- MOBILE RESPONSIVENESS --- */
 @media (max-width: 768px) {
     .qv-content { 
         flex-direction: column; 
-        overflow-y: auto; /* Allows scrolling if text is long */
-        max-height: 85vh; 
+        height: auto;
+        min-height: auto;
     }
     .qv-image-side, .qv-text-side { width: 100%; }
-    .qv-text-side { padding: 40px 24px; }
-    .qv-image-side img { max-height: 50vh; }
-    .qv-title { font-size: 2rem; }
+    .qv-image-side { height: 50vh; }
+    .qv-text-side { padding: 50px 30px; }
+    .qv-title { font-size: 2.25rem; }
+    .qv-text-inner .archive-ref { margin-bottom: 40px; }
 }
