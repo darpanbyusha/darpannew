@@ -269,12 +269,77 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     }
-
+    // ==========================================
+    // 10. QUICK VIEW LOGIC (POST-RENDER)
+    // ==========================================
+    function initQuickView() {
+        const qvModal = document.getElementById('quick-view-modal');
+        const closeQvBtn = document.getElementById('close-qv');
+        
+        // The elements inside the modal we need to update
+        const qvImg = document.getElementById('qv-img');
+        const qvTitle = document.getElementById('qv-title');
+        const qvCollection = document.getElementById('qv-collection');
+        const qvRef = document.getElementById('qv-ref');
+        
+        // Grab all the freshly generated design cards
+        const designCards = document.querySelectorAll('.design-card');
+        
+        if(qvModal && designCards.length > 0) {
+            designCards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                    // STOP: If they clicked the heart button, do not open the Quick View!
+                    if(e.target.closest('.wishlist-btn')) return;
+                    
+                    // 1. Find the ID of the clicked garment
+                    const wishlistBtn = card.querySelector('.wishlist-btn');
+                    if (!wishlistBtn) return;
+                    
+                    const designId = wishlistBtn.getAttribute('data-design-id');
+                    
+                    // 2. Search your database for the matching dress
+                    const designData = darpanDesigns.find(d => d.id === designId);
+                    
+                    // 3. If found, inject the details into the modal
+                    if(designData) {
+                        qvImg.src = designData.image;
+                        qvTitle.innerText = designData.name;
+                        // Uses the collection name if it exists, otherwise falls back to the category
+                        qvCollection.innerText = designData.collectionName || designData.category; 
+                        qvRef.innerText = `Edition No. ${designData.id}`;
+                        
+                        // 4. Show the modal
+                        qvModal.classList.add('active');
+                        document.body.style.overflow = 'hidden'; // Freeze background
+                    }
+                });
+            });
+            
+            // Close logic for the 'X' button
+            if (closeQvBtn) {
+                closeQvBtn.addEventListener('click', () => {
+                    qvModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+            
+            // Close logic for clicking the dark overlay
+            qvModal.addEventListener('click', (e) => {
+                if (e.target === qvModal) {
+                    qvModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+    }
     // --- INITIALISE DYNAMIC FUNCTIONS ---
     // We run these last so they attach to the freshly built HTML
     initFavourites();
     initFilters();
-
+    // --- INITIALISE DYNAMIC FUNCTIONS ---
+    initFavourites();
+    initFilters();
+    initQuickView(); // ADD THIS NEW LINE HERE!
 // ==========================================
     // 9. SCROLL TO TOP BUTTON LOGIC
     // ==========================================

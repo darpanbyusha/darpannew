@@ -1199,3 +1199,73 @@ button.btn-solid-gold {
         height: 40px;
     }
 }
+/* ==========================================
+   QUICK VIEW MODAL
+========================================== */
+
+/* The Quick View Box Container */
+.qv-box {
+    background-color: var(--cream);
+    width: 95%;
+    max-width: 1000px; /* A massive, luxurious canvas */
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transform: translateY(30px);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    overflow: hidden; /* Enforces the sharp outer edges */
+}
+
+.modal-overlay.active .qv-box { 
+    transform: translateY(0); 
+}
+
+/* The Inner Split Layout */
+.qv-content { 
+    display: flex; 
+    width: 100%; 
+    height: 100%; 
+}
+
+/* Left Image Canvas */
+.qv-image-side { 
+    width: 50%; 
+    background: var(--white); 
+}
+
+.qv-image-side img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; /* Prevents the photo from squishing */
+    max-height: 80vh; 
+}
+
+/* Right Text Canvas */
+.qv-text-side { 
+    width: 50%; 
+    padding: 60px; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    text-align: left; 
+}
+
+/* Typography specific to the Quick View */
+.qv-collection { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 10px; font-weight: 700; }
+.qv-title { font-size: 2.5rem; margin-bottom: 5px; line-height: 1.1; }
+.qv-desc { font-size: 0.95rem; line-height: 1.6; color: rgba(43, 27, 23, 0.8); }
+
+/* --- MOBILE RESPONSIVENESS (Stacks vertically) --- */
+@media (max-width: 768px) {
+    .qv-content { 
+        flex-direction: column; 
+        overflow-y: auto; /* Allows scrolling if text is long */
+        max-height: 85vh; 
+    }
+    .qv-image-side, .qv-text-side { width: 100%; }
+    .qv-text-side { padding: 40px 24px; }
+    .qv-image-side img { max-height: 50vh; }
+    .qv-title { font-size: 2rem; }
+}
