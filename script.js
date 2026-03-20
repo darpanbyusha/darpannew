@@ -9,10 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const menuOverlay = document.getElementById('menu-overlay');
 
     function toggleMenu() {
-        sideMenu.classList.toggle('active');
-        menuOverlay.classList.toggle('active');
-        // Prevent background scrolling when menu is open
-        document.body.style.overflow = sideMenu.classList.contains('active') ? 'hidden' : '';
+        if(sideMenu && menuOverlay) {
+            sideMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.style.overflow = sideMenu.classList.contains('active') ? 'hidden' : '';
+        }
     }
 
     if(menuBtn && closeMenuBtn && sideMenu && menuOverlay) {
@@ -20,11 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
         closeMenuBtn.addEventListener('click', toggleMenu);
         menuOverlay.addEventListener('click', toggleMenu);
         
-        // Close menu if a link inside it is clicked
         const menuLinks = document.querySelectorAll('.side-menu-links a');
-        menuLinks.forEach(link => {
-            link.addEventListener('click', toggleMenu);
-        });
+        menuLinks.forEach(link => link.addEventListener('click', toggleMenu));
     }
 
     // ==========================================
@@ -51,13 +49,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (experienceItems.length > 0 && displayImg) {
         experienceItems.forEach(item => {
             item.addEventListener('click', () => {
-                // Remove active from all
                 experienceItems.forEach(i => i.classList.remove('active'));
-                
-                // Add active to clicked
                 item.classList.add('active');
 
-                // Smooth fade swap
                 const newSrc = item.getAttribute('data-img');
                 displayImg.style.opacity = '0';
                 
@@ -81,13 +75,12 @@ document.addEventListener("DOMContentLoaded", () => {
             currentSlide = (currentSlide + 1) % slides.length;
             slides[currentSlide].classList.add('active');
         }
-        setInterval(nextSlide, 6000); // Changes every 6 seconds
+        setInterval(nextSlide, 6000); 
     }
 
     // ==========================================
-    // 5. CONTACT MODALS (BOTH VERSIONS)
+    // 5. CONTACT MODALS
     // ==========================================
-    // Main CTA Modal
     const contactModal = document.getElementById('contact-modal');
     const openModalBtn = document.getElementById('open-contact-popup');
     const closeModalBtn = document.getElementById('close-modal');
@@ -112,7 +105,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Header/Navigation Modal (3 Buttons)
     const navModal = document.getElementById('nav-contact-modal');
     const openNavBtns = document.querySelectorAll('.open-nav-popup'); 
 
@@ -143,59 +135,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================================
-    // 6. DYNAMIC GRID RENDERER (THE FACTORY)
+    // 6. SCROLL TO TOP BUTTON
     // ==========================================
-    
-    // Checks if a design is already in favourites to keep the heart gold
-    function getIsActive(designId) {
-        const savedDesigns = JSON.parse(localStorage.getItem('darpanFavourites')) || [];
-        return savedDesigns.includes(designId) ? 'active' : '';
+    const scrollTopBtn = document.getElementById('scroll-to-top');
+
+    if (scrollTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     }
 
-    // Builds the exact HTML for a single garment
-    function createDesignCardHTML(design) {
-        return `
-        <div class="design-card gallery-item" data-category="${design.category}">
-            <div class="img-4x5 bg-cream">
-                <img src="${design.image}" alt="${design.name}">
-                <button class="wishlist-btn ${getIsActive(design.id)}" aria-label="Save to favourites" data-design-id="${design.id}">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                    </svg>
-                </button>
-            </div>
-            <div class="design-info">
-                <p class="archive-ref">${design.id}</p>
-            </div>
-        </div>
-        `;
-    }
-
-    // Inject into Homepage (Top Rated Only, Max 8)
-    const homepageGrid = document.getElementById('homepage-designs-grid');
-    if (homepageGrid && typeof darpanDesigns !== 'undefined') {
-        const topDesignsHTML = darpanDesigns
-            .filter(design => design.topRated === true)
-            .slice(0, 8) 
-            .map(createDesignCardHTML)
-            .join('');
-        homepageGrid.innerHTML = topDesignsHTML;
-    }
-
-    // Inject into Designs Archive Page (All Items)
-    const allDesignsGrid = document.getElementById('all-designs-grid');
-    if (allDesignsGrid && typeof darpanDesigns !== 'undefined') {
-        const allDesignsHTML = darpanDesigns.map(createDesignCardHTML).join('');
-        allDesignsGrid.innerHTML = allDesignsHTML;
-    }
-
-
-// ==========================================
+    // ==========================================
     // 7. DYNAMIC GRID RENDERER (LIVE API)
     // ==========================================
-    
-    // We create a global variable to hold your live data
-    let darpanDesigns = [];
+    let darpanDesigns = []; // Global variable to hold live data
 
     function getIsActive(designId) {
         const savedDesigns = JSON.parse(localStorage.getItem('darpanFavourites')) || [];
@@ -245,10 +206,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 allDesignsGrid.innerHTML = darpanDesigns.map(createDesignCardHTML).join('');
             }
 
-            // ==========================================
-            // EXECUTE DYNAMIC FUNCTIONS AFTER RENDER
-            // ==========================================
-            // These MUST run inside this block so they attach to the newly loaded HTML
+            // Execute dynamic functions AFTER the grid is built
             initFavourites();
             initFilters();
             initQuickView();
