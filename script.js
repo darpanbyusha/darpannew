@@ -190,8 +190,75 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+// ==========================================
+    // 7. DYNAMIC GRID RENDERER (LIVE API)
     // ==========================================
-    // 7. FAVOURITES LOGIC & TOAST (POST-RENDER)
+    
+    // We create a global variable to hold your live data
+    let darpanDesigns = [];
+
+    function getIsActive(designId) {
+        const savedDesigns = JSON.parse(localStorage.getItem('darpanFavourites')) || [];
+        return savedDesigns.includes(designId) ? 'active' : '';
+    }
+
+    function createDesignCardHTML(design) {
+        return `
+        <div class="design-card gallery-item" data-category="${design.category}">
+            <div class="img-4x5 bg-cream">
+                <img src="${design.image}" alt="${design.name}">
+                <button class="wishlist-btn ${getIsActive(design.id)}" aria-label="Save to favourites" data-design-id="${design.id}">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="design-info">
+                <h3 class="design-name text-brown">${design.name}</h3>
+                <p class="archive-ref">${design.id}</p>
+            </div>
+        </div>
+        `;
+    }
+
+    // THE MAGIC BRIDGE: Fetching your live data from Google Drive
+    const API_URL = "https://script.google.com/macros/s/AKfycbwRbNf7A0eLD3CcOs0W6iE7ZFbkhhQYcIITdXbQ8a8al50bFl55mlL_FQiTsnoc91LwMw/exec";
+
+    fetch(API_URL)
+        .then(response => response.json())
+        .then(data => {
+            darpanDesigns = data; // Save the live data
+
+            // Inject into Homepage
+            const homepageGrid = document.getElementById('homepage-designs-grid');
+            if (homepageGrid) {
+                homepageGrid.innerHTML = darpanDesigns
+                    .filter(design => design.topRated === true)
+                    .slice(0, 8) 
+                    .map(createDesignCardHTML)
+                    .join('');
+            }
+
+            // Inject into Designs Archive Page
+            const allDesignsGrid = document.getElementById('all-designs-grid');
+            if (allDesignsGrid) {
+                allDesignsGrid.innerHTML = darpanDesigns.map(createDesignCardHTML).join('');
+            }
+
+            // ==========================================
+            // EXECUTE DYNAMIC FUNCTIONS AFTER RENDER
+            // ==========================================
+            // These MUST run inside this block so they attach to the newly loaded HTML
+            initFavourites();
+            initFilters();
+            initQuickView();
+        })
+        .catch(error => {
+            console.error("Error loading designs from the atelier:", error);
+        });
+
+    // ==========================================
+    // 8. FAVOURITES LOGIC & TOAST 
     // ==========================================
     function initFavourites() {
         const favBtns = document.querySelectorAll('.wishlist-btn');
@@ -206,8 +273,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 favCountDisplay.innerText = savedDesigns.length;
             }
         }
-        
-        // Initial load count update
         updateFavCount();
 
         function showToast(message) {
@@ -220,14 +285,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         favBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
-                // Prevents clicking the heart from triggering the Quick View later
                 e.stopPropagation(); 
                 
                 const designId = btn.getAttribute('data-design-id');
                 btn.classList.toggle('active');
                 
                 if (btn.classList.contains('active')) {
-                    savedDesigns.push(designId);
+                    if (!savedDesigns.includes(designId)) savedDesigns.push(designId);
                     showToast("Added to your favourites");
                 } else {
                     savedDesigns = savedDesigns.filter(id => id !== designId);
@@ -241,7 +305,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================================
-    // 8. DESIGNS PAGE FILTERING (POST-RENDER)
+    // 9. DESIGNS PAGE FILTERING
     // ==========================================
     function initFilters() {
         const filterBtns = document.querySelectorAll('.filter-btn');
@@ -250,7 +314,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (filterBtns.length > 0 && galleryItems.length > 0) {
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
-                    
                     filterBtns.forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
 
@@ -269,20 +332,18 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     }
+
     // ==========================================
-    // 10. QUICK VIEW LOGIC (WITH SLIDING STATE)
+    // 10. QUICK VIEW LOGIC
     // ==========================================
     function initQuickView() {
         const qvModal = document.getElementById('quick-view-modal');
         const closeQvBtn = document.getElementById('close-qv');
-        
-        // Modal Details Elements
         const qvImg = document.getElementById('qv-img');
         const qvTitle = document.getElementById('qv-title');
         const qvCollection = document.getElementById('qv-collection');
         const qvRef = document.getElementById('qv-ref');
         
-        // The Sliding Interaction Elements
         const interactionPanel = document.getElementById('qv-interaction-panel');
         const showContactBtn = document.getElementById('show-qv-contact');
         const backToDetailsBtn = document.getElementById('back-to-details');
@@ -290,8 +351,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const designCards = document.querySelectorAll('.design-card');
         
         if(qvModal && designCards.length > 0) {
-            
-            // 1. OPEN THE MODAL
             designCards.forEach(card => {
                 card.addEventListener('click', (e) => {
                     if(e.target.closest('.wishlist-btn')) return;
@@ -308,7 +367,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         if(qvCollection) qvCollection.innerText = designData.collectionName || designData.category; 
                         if(qvRef) qvRef.innerText = `Edition No. ${designData.id}`;
                         
-                        // Ensure it always starts on the Details view!
                         if(interactionPanel) interactionPanel.classList.remove('show-contact');
                         
                         qvModal.classList.add('active');
@@ -317,24 +375,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             });
             
-            // 2. THE SLIDING PANEL ANIMATION
             if(showContactBtn && backToDetailsBtn && interactionPanel) {
-                // Slide to Contact Options
                 showContactBtn.addEventListener('click', () => {
                     interactionPanel.classList.add('show-contact');
                 });
-                
-                // Slide back to Garment Details
                 backToDetailsBtn.addEventListener('click', () => {
                     interactionPanel.classList.remove('show-contact');
                 });
             }
             
-            // 3. CLOSE THE MODAL (And reset the view)
             function closeQuickView() {
                 qvModal.classList.remove('active');
                 document.body.style.overflow = '';
-                // Add a tiny delay to reset the slide so they don't see it snapping back as it fades out
                 setTimeout(() => {
                     if(interactionPanel) interactionPanel.classList.remove('show-contact');
                 }, 400); 
@@ -347,36 +399,5 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     }
-    // --- INITIALISE DYNAMIC FUNCTIONS ---
-    initFavourites();
-    initFilters();
-    initQuickView(); // ADD THIS NEW LINE HERE!
-// ==========================================
-    // 9. SCROLL TO TOP BUTTON LOGIC
-    // ==========================================
-    const scrollTopBtn = document.getElementById('scroll-to-top');
 
-    if (scrollTopBtn) {
-        // 1. Listen to the window scroll
-        window.addEventListener('scroll', () => {
-            // If the user scrolls down more than 400 pixels, show the button
-            if (window.scrollY > 400) {
-                scrollTopBtn.classList.add('show');
-            } else {
-                // Otherwise, hide it again
-                scrollTopBtn.classList.remove('show');
-            }
-        });
-
-        // 2. Click action to glide back to the top
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth' 
-            });
-        });
-    }
-
-
-
-});
+}); // END OF DOMContentLoaded
