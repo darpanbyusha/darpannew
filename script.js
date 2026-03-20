@@ -286,30 +286,49 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ==========================================
-    // 9. DESIGNS PAGE FILTERING
+// ==========================================
+    // 9. DESIGNS PAGE FILTERING (WITH URL PARSING)
     // ==========================================
     function initFilters() {
         const filterBtns = document.querySelectorAll('.filter-btn');
         const galleryItems = document.querySelectorAll('.gallery-item');
 
         if (filterBtns.length > 0 && galleryItems.length > 0) {
+            
+            // 1. Check the web address for a specific filter request
+            const urlParams = new URLSearchParams(window.location.search);
+            const activeFilter = urlParams.get('filter') || 'all';
+
+            // 2. The master function to visually swap the grid and buttons
+            function applyFilter(filterValue) {
+                // Highlight the correct button
+                filterBtns.forEach(b => {
+                    if(b.getAttribute('data-filter') === filterValue) {
+                        b.classList.add('active');
+                    } else {
+                        b.classList.remove('active');
+                    }
+                });
+
+                // Show/Hide the correct garments
+                galleryItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.classList.remove('hidden');
+                        setTimeout(() => item.style.opacity = '1', 50);
+                    } else {
+                        item.classList.add('hidden');
+                        item.style.opacity = '0';
+                    }
+                });
+            }
+
+            // 3. Apply the filter instantly on load
+            applyFilter(activeFilter);
+
+            // 4. Listen for manual clicks going forward
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-
-                    const filterValue = btn.getAttribute('data-filter');
-
-                    galleryItems.forEach(item => {
-                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                            item.classList.remove('hidden');
-                            setTimeout(() => item.style.opacity = '1', 50);
-                        } else {
-                            item.classList.add('hidden');
-                            item.style.opacity = '0';
-                        }
-                    });
+                    applyFilter(btn.getAttribute('data-filter'));
                 });
             });
         }

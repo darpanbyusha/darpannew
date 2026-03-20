@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DARPAN by Usha | Our Collections</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="site-header header-solid sticky-top" id="main-header">
+        <div class="header-left">
+            <button class="menu-toggle-btn" id="open-menu-btn">
+                <div class="hamburger-icon">
+                    <span></span><span></span><span></span>
+                </div>
+                <span class="header-label hidden-mobile">Menu</span>
+            </button>
+        </div>
+        
+        <div class="header-centre">
+            <a href="index.html" class="logo-link">
+                <img src="images/logo.png" alt="DARPAN by Usha" class="site-logo">
+            </a>
+        </div>
+        
+        <div class="header-right">
+            <button class="search-btn" aria-label="Search">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+            
+            <a href="favourites.html" class="favourites-btn" aria-label="Favourites">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+                <span id="fav-count" class="fav-count">0</span>
+            </a>
+
+            <a href="#" class="btn-header-contact hidden-mobile open-nav-popup">Contact Us</a>
+        </div>
+    </header>
+
+    <div class="menu-overlay" id="menu-overlay"></div>
+    <nav class="side-menu" id="side-menu">
+        <div class="side-menu-header">
+            <button class="close-menu-btn" id="close-menu-btn" aria-label="Close menu">
+                <i class="fas fa-times fa-2x"></i>
+            </button>
+        </div>
+        <div class="side-menu-links">
+            <a href="index.html">Home</a>
+            <a href="collections.html" class="current-page">Our Collections</a>
+            <a href="designs.html">All Designs</a>
+        </div>
+        <div class="side-menu-divider"></div>
+        <div class="side-menu-contact">
+            <h2 class="contact-title">DARPAN by Usha</h2>
+            <p>Shop 19, Maharaja Agrasen Complex<br>Sector 9, Rohini, Delhi, 110085, India</p>
+            <p>+91 92138 41471</p>
+            <a href="#" class="btn-solid-gold w-full mt-small open-nav-popup">Contact Us</a>
+        </div>
+    </nav>
+
+    <main class="pt-gallery pb-large bg-white">
+        
+        <div class="text-center mb-large px-small">
+            <h1 class="section-heading">Curated Collections</h1>
+            <div class="divider-copper mb-small"></div>
+            <p class="section-subheading">Explore our masterfully crafted seasonal lookbooks.</p>
+        </div>
+
+        <div class="landscape-services-grid mb-large">
+            
+            <a href="designs.html?filter=lehengas" class="landscape-card">
+                <img src="images/placeholder1.jpg" alt="Bridal Couture" class="landscape-bg">
+                <div class="landscape-overlay"></div>
+                <div class="landscape-content">
+                    <span class="landscape-number text-gold">I</span>
+                    <h3 class="landscape-title">Bridal Couture</h3>
+                    <div class="landscape-line"></div>
+                    <p class="landscape-desc">Exquisite lehengas intricately crafted for your most significant moments.</p>
+                </div>
+            </a>
+
+            <a href="designs.html?filter=kurtis" class="landscape-card">
+                <img src="images/placeholder2.jpg" alt="The Pret Collection" class="landscape-bg">
+                <div class="landscape-overlay"></div>
+                <div class="landscape-content">
+                    <span class="landscape-number text-gold">II</span>
+                    <h3 class="landscape-title">The Prêt Collection</h3>
+                    <div class="landscape-line"></div>
+                    <p class="landscape-desc">Ready-to-wear kurtis blending traditional motifs with sharp, modern silhouettes.</p>
+                </div>
+            </a>
+
+            <a href="designs.html?filter=blouses" class="landscape-card">
+                <img src="images/placeholder3.jpg" alt="Bespoke Blouses" class="landscape-bg">
+                <div class="landscape-overlay"></div>
+                <div class="landscape-content">
+                    <span class="landscape-number text-gold">III</span>
+                    <h3 class="landscape-title">Bespoke Blouses</h3>
+                    <div class="landscape-line"></div>
+                    <p class="landscape-desc">Hand-stitched details and tailored perfection designed to elevate any drape.</p>
+                </div>
+            </a>
+
+            <a href="designs.html?filter=dresses" class="landscape-card">
+                <img src="images/placeholder4.jpg" alt="Evening Elegance" class="landscape-bg">
+                <div class="landscape-overlay"></div>
+                <div class="landscape-content">
+                    <span class="landscape-number text-gold">IV</span>
+                    <h3 class="landscape-title">Evening Elegance</h3>
+                    <div class="landscape-line"></div>
+                    <p class="landscape-desc">Flowing dresses that command the room, cut from the finest fluid fabrics.</p>
+                </div>
+            </a>
+
+        </div>
+    </main>
+
+    <footer class="site-footer bg-brown text-cream section-padding py-custom">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="DARPAN by Usha" class="footer-logo">
+                </a>
+                <p>Creating beautifully tailored pieces since 2009.<br>Rooted in tradition, crafted to fit you.</p>
+            </div>
+            <div class="footer-links">
+                <h5>Shop</h5>
+                <ul>
+                    <li><a href="collections.html">New Arrivals</a></li>
+                    <li><a href="designs.html?filter=lehengas">Bridal Couture</a></li>
+                    <li><a href="designs.html?filter=kurtis">Pret Collection</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h5>Client Care</h5>
+                <ul>
+                    <li><a href="#" class="open-nav-popup">Bespoke Orders</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h5>Newsletter</h5>
+                <p>Join our circle for exclusive previews.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Email Address">
+                    <button type="submit">Join</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Proudly Crafted in भारत 🇮🇳 • Est. 2009</p>
+            <p>© 2026 DARPAN Luxury. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <div id="nav-contact-modal" class="modal-overlay">
+        <div class="modal-box">
+            <button class="close-btn close-nav-btn" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 class="modal-title text-brown mb-small">Get in Touch</h3>
+            <p class="modal-text mb-medium">We would be delighted to assist you. How would you prefer to reach out?</p>
+            <div class="modal-actions">
+                <a href="tel:+919213841471" class="btn-solid-gold w-full mb-small"><i class="fas fa-phone"></i> Call Us</a>
+                <a href="https://wa.me/919213841471" target="_blank" rel="noopener noreferrer" class="btn-outline-gold w-full mb-small"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+                <a href="http://googleusercontent.com/maps.google.com/YOUR_LINK" target="_blank" rel="noopener noreferrer" class="btn-outline-gold w-full"><i class="fas fa-map-marker-alt"></i> Get Directions</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
