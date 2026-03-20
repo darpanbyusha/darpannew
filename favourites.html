@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DARPAN by Usha | Your Favourites</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="site-header header-solid sticky-top" id="main-header">
+        <div class="header-left">
+            <button class="menu-toggle-btn" id="open-menu-btn">
+                <div class="hamburger-icon">
+                    <span></span><span></span><span></span>
+                </div>
+                <span class="header-label hidden-mobile">Menu</span>
+            </button>
+        </div>
+        
+        <div class="header-centre">
+            <a href="index.html" class="logo-link">
+                <img src="images/logo.png" alt="DARPAN by Usha" class="site-logo">
+            </a>
+        </div>
+        
+        <div class="header-right">
+            <button class="search-btn" aria-label="Search">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+            
+            <a href="favourites.html" class="favourites-btn current-page" aria-label="Favourites">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+                <span id="fav-count" class="fav-count">0</span>
+            </a>
+
+            <a href="#" class="btn-header-contact hidden-mobile open-nav-popup">Contact Us</a>
+        </div>
+    </header>
+
+    <div class="menu-overlay" id="menu-overlay"></div>
+    <nav class="side-menu" id="side-menu">
+        <div class="side-menu-header">
+            <button class="close-menu-btn" id="close-menu-btn" aria-label="Close menu">
+                <i class="fas fa-times fa-2x"></i>
+            </button>
+        </div>
+        <div class="side-menu-links">
+            <a href="index.html">Home</a>
+            <a href="collections.html">Our Collections</a>
+            <a href="designs.html">All Designs</a>
+        </div>
+        <div class="side-menu-divider"></div>
+        <div class="side-menu-contact">
+            <h2 class="contact-title">DARPAN by Usha</h2>
+            <p>Shop 19, Maharaja Agrasen Complex<br>Sector 9, Rohini, Delhi, 110085, India</p>
+            <p>+91 92138 41471</p>
+            <a href="#" class="btn-solid-gold w-full mt-small open-nav-popup">Contact Us</a>
+        </div>
+    </nav>
+
+    <main class="pt-gallery pb-large bg-white" style="min-height: 70vh;">
+        
+        <div class="text-center mb-large px-small">
+            <h1 class="section-heading">Your Archive</h1>
+            <div class="divider-copper mb-small"></div>
+            <p class="section-subheading">Your curated selection of bespoke pieces.</p>
+        </div>
+        
+        <div class="section-padding mb-large">
+            <div id="favourites-grid" class="grid-4-col gallery-grid max-w-screen mx-auto">
+                </div>
+        </div>
+
+    </main>
+
+    <footer class="site-footer bg-brown text-cream section-padding py-custom">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="DARPAN by Usha" class="footer-logo">
+                </a>
+                <p>Creating beautifully tailored pieces since 2009.<br>Rooted in tradition, crafted to fit you.</p>
+            </div>
+            <div class="footer-links">
+                <h5>Shop</h5>
+                <ul>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Bridal Couture</a></li>
+                    <li><a href="#">Pret Collection</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h5>Client Care</h5>
+                <ul>
+                    <li><a href="#">Bespoke Orders</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h5>Newsletter</h5>
+                <p>Join our circle for exclusive previews.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Email Address">
+                    <button type="submit">Join</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Proudly Crafted in भारत 🇮🇳 • Est. 2009</p>
+            <p>© 2026 DARPAN Luxury. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <button id="scroll-to-top" class="scroll-to-top-btn" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M18 15l-6-6-6 6"></path>
+        </svg>
+    </button>
+
+    <div id="toast-container" class="toast-notification">Added to your favourites</div>
+
+    <div id="quick-view-modal" class="modal-overlay">
+        <div class="qv-box">
+            <button id="close-qv" class="close-btn" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="qv-content">
+                <div class="qv-image-side">
+                    <img id="qv-img" src="" alt="Design Preview">
+                </div>
+                <div class="qv-text-side bg-white" id="qv-interaction-panel">
+                    <div id="qv-details-view" class="qv-view active">
+                        <p id="qv-collection" class="qv-collection text-gold">Collection Name</p>
+                        <h2 id="qv-title" class="qv-title text-brown italic">Design Title</h2>
+                        <p id="qv-ref" class="archive-ref mb-large">Edition No. 000</p>
+                        <button id="show-qv-contact" class="btn-solid-gold w-full">
+                            Enquire About This Piece
+                        </button>
+                    </div>
+                    <div id="qv-contact-view" class="qv-view">
+                        <button id="back-to-details" class="back-btn mb-small" aria-label="Go Back">
+                            <i class="fas fa-arrow-left"></i> Back to Details
+                        </button>
+                        <h3 class="qv-title text-brown italic mb-small" style="font-size: 2rem;">Get in Touch</h3>
+                        <p class="qv-desc mb-medium">We would be delighted to assist you with this piece.</p>
+                        <a href="tel:+919213841471" class="btn-solid-gold w-full mb-small">
+                            <i class="fas fa-phone"></i> Call Us
+                        </a>
+                        <a href="https://wa.me/919213841471" target="_blank" rel="noopener noreferrer" class="btn-outline-gold w-full">
+                            <i class="fab fa-whatsapp"></i> WhatsApp Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="nav-contact-modal" class="modal-overlay">
+        <div class="modal-box">
+            <button class="close-btn close-nav-btn" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 class="modal-title text-brown mb-small">Get in Touch</h3>
+            <p class="modal-text mb-medium">We would be delighted to assist you. How would you prefer to reach out?</p>
+            <div class="modal-actions">
+                <a href="tel:+919213841471" class="btn-solid-gold w-full mb-small"><i class="fas fa-phone"></i> Call Us</a>
+                <a href="https://wa.me/919213841471" target="_blank" rel="noopener noreferrer" class="btn-outline-gold w-full mb-small"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+                <a href="http://googleusercontent.com/maps.google.com/YOUR_LINK" target="_blank" rel="noopener noreferrer" class="btn-outline-gold w-full"><i class="fas fa-map-marker-alt"></i> Get Directions</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

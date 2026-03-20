@@ -205,7 +205,31 @@ document.addEventListener("DOMContentLoaded", () => {
             if (allDesignsGrid) {
                 allDesignsGrid.innerHTML = darpanDesigns.map(createDesignCardHTML).join('');
             }
+            // Inject into Favourites Archive Page
+            const favouritesGrid = document.getElementById('favourites-grid');
+            if (favouritesGrid) {
+                // Grab the saved IDs from the browser memory
+                const savedIds = JSON.parse(localStorage.getItem('darpanFavourites')) || [];
+                
+                // Filter the live Google Drive data to only show saved items
+                const favouriteDesigns = darpanDesigns.filter(design => savedIds.includes(design.id));
 
+                if (favouriteDesigns.length === 0) {
+                    // The beautiful empty state if they haven't saved anything yet
+                    favouritesGrid.innerHTML = `
+                        <div class="text-center" style="grid-column: 1 / -1; padding: 60px 20px;">
+                            <h3 class="text-brown italic mb-small" style="font-size: 2rem;">Your archive is empty</h3>
+                            <p class="mb-medium" style="opacity: 0.7;">You haven't added any bespoke pieces to your favourites yet.</p>
+                            <a href="designs.html" class="btn-outline-gold">Explore Designs</a>
+                        </div>
+                    `;
+                    // Removes grid styling so the empty message centers perfectly
+                    favouritesGrid.classList.remove('grid-4-col', 'gallery-grid'); 
+                } else {
+                    // Populate the grid with their chosen garments
+                    favouritesGrid.innerHTML = favouriteDesigns.map(createDesignCardHTML).join('');
+                }
+            }
             // Execute dynamic functions AFTER the grid is built
             initFavourites();
             initFilters();
