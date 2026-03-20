@@ -189,59 +189,74 @@ document.addEventListener("DOMContentLoaded", () => {
     // THE MAGIC BRIDGE: Fetching your live data from Google Drive
     const API_URL = "https://script.google.com/macros/s/AKfycbwRbNf7A0eLD3CcOs0W6iE7ZFbkhhQYcIITdXbQ8a8al50bFl55mlL_FQiTsnoc91LwMw/exec";
 
-    fetch(API_URL)
-        .then(response => response.json())
-        .then(data => {
-            darpanDesigns = data; // Save the live data
+// We wrap the building process in a function so we can trigger it instantly from memory
+    function renderWebsiteData(data) {
+        darpanDesigns = data; 
 
-            // Inject into Homepage
-            const homepageGrid = document.getElementById('homepage-designs-grid');
-            if (homepageGrid) {
-                homepageGrid.innerHTML = darpanDesigns
-                    .filter(design => design.topRated === true)
-                    .slice(0, 8) 
-                    .map(createDesignCardHTML)
-                    .join('');
-            }
+        // Inject into Homepage
+        const homepageGrid = document.getElementById('homepage-designs-grid');
+        if (homepageGrid) {
+            homepageGrid.innerHTML = darpanDesigns
+                .filter(design => design.topRated === true)
+                .slice(0, 8) 
+                .map(design => createDesignCardHTML(design))
+                .join('');
+        }
 
-            // Inject into Designs Archive Page
-            const allDesignsGrid = document.getElementById('all-designs-grid');
-            if (allDesignsGrid) {
-                allDesignsGrid.innerHTML = darpanDesigns.map(createDesignCardHTML).join('');
-            }
-            // Inject into Favourites Archive Page
-            const favouritesGrid = document.getElementById('favourites-grid');
-            if (favouritesGrid) {
-                // Grab the saved IDs from the browser memory
-                const savedIds = JSON.parse(localStorage.getItem('darpanFavourites')) || [];
-                
-                // Filter the live Google Drive data to only show saved items
-                const favouriteDesigns = darpanDesigns.filter(design => savedIds.includes(design.id));
+        // Inject into Designs Archive Page (PRE-FILTERED)
+        const allDesignsGrid = document.getElementById('all-designs-grid');
+        if (allDesignsGrid) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const activeFilter = urlParams.get('filter') || 'all';
 
-                if (favouriteDesigns.length === 0) {
-                    // The beautiful empty state if they haven't saved anything yet
-                    favouritesGrid.innerHTML = `
-                        <div class="text-center" style="grid-column: 1 / -1; padding: 60px 20px;">
-                            <h3 class="text-brown italic mb-small" style="font-size: 2rem;">Your archive is empty</h3>
-                            <p class="mb-medium" style="opacity: 0.7;">You haven't added any bespoke pieces to your favourites yet.</p>
-                            <a href="designs.html" class="btn-outline-gold">Explore Designs</a>
-                        </div>
-                    `;
-                    // Removes grid styling so the empty message centers perfectly
-                    favouritesGrid.classList.remove('grid-4-col', 'gallery-grid'); 
-                } else {
-                    // Populate the grid with their chosen garments
-                    favouritesGrid.innerHTML = favouriteDesigns.map(createDesignCardHTML).join('');
-                }
+            allDesignsGrid.innerHTML = darpanDesigns.map(design => {
+                const shouldHide = (activeFilter !== 'all' && design.category !== activeFilter) ? 'hidden' : '';
+                return createDesignCardHTML(design, shouldHide);
+            }).join('');
+        }
+
+        // Inject into Favourites Page
+        const favouritesGrid = document.getElementById('favourites-grid');
+        if (favouritesGrid) {
+            const savedIds = JSON.parse(localStorage.getItem('darpanFavourites')) || [];
+            const favouriteDesigns = darpanDesigns.filter(design => savedIds.includes(design.id));
+
+            if (favouriteDesigns.length === 0) {
+                favouritesGrid.innerHTML = `
+                    <div class="text-center" style="grid-column: 1 / -1; padding: 60px 20px;">
+                        <h3 class="text-brown italic mb-small" style="font-size: 2rem;">Your archive is empty</h3>
+                        <p class="mb-medium" style="opacity: 0.7;">You haven't added any bespoke pieces to your favourites yet.</p>
+                        <a href="designs.html" class="btn-outline-gold">Explore Designs</a>
+                    </div>
+                `;
+                favouritesGrid.classList.remove('grid-4-col', 'gallery-grid'); 
+            } else {
+                favouritesGrid.innerHTML = favouriteDesigns.map(design => createDesignCardHTML(design)).join('');
             }
-            // Execute dynamic functions AFTER the grid is built
-            initFavourites();
-            initFilters();
-            initQuickView();
-        })
-        .catch(error => {
-            console.error("Error loading designs:", error);
-        });
+        }
+
+        // Attach all the interactive buttons
+        initFavourites();
+        initFilters();
+        initQuickView();
+    }
+
+    // THE SPEED FIX: Check if we already downloaded the catalogue this session
+    const cachedData = sessionStorage.getItem('darpanCatalogue');
+
+    if (cachedData) {
+        // INSTANT LOAD: The user has been here already, use the saved memory instantly
+        renderWebsiteData(JSON.parse(cachedData));
+    } else {
+        // FIRST LOAD: Fetch from Google Drive, then save it to memory for the next page click
+        fetch(API_URL)
+            .then(response => response.json())
+            .then(data => {
+                sessionStorage.setItem('darpanCatalogue', JSON.stringify(data)); // Save to memory
+                renderWebsiteData(data); // Build the site
+            })
+            .catch(error => console.error("Error loading designs:", error));
+    }
 
     // ==========================================
     // 8. FAVOURITES LOGIC & TOAST 
