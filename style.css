@@ -1394,3 +1394,65 @@ button.btn-solid-gold {
     .qv-title { font-size: 2.25rem; }
     .qv-view .archive-ref { margin-bottom: 40px; }
 }
+/* ==========================================
+   EDITORIAL ZIG-ZAG LOOKBOOKS (4:5 RATIO)
+========================================== */
+
+.editorial-showcase {
+    display: flex;
+    align-items: center;
+    gap: 8%; /* Creates breathing room between text and image */
+    margin-bottom: 150px; /* Massive spacing between collections */
+}
+
+/* Magic line: makes every second block flip image and text around! */
+.editorial-showcase:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+/* The Image Canvas (Locked to your 4:5 portrait ratio) */
+.editorial-img {
+    width: 50%;
+    aspect-ratio: 4 / 5;
+    position: relative;
+    overflow: hidden;
+}
+
+.editorial-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s ease;
+}
+
+.editorial-showcase:hover .editorial-img img {
+    transform: scale(1.05);
+}
+
+/* The Text Canvas */
+.editorial-text {
+    width: 50%;
+    padding: 0 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.editorial-number { font-size: 1.25rem; font-weight: 700; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 15px; }
+.editorial-title { font-size: 3.5rem; line-height: 1.1; margin-bottom: 25px; color: var(--brown); }
+.editorial-desc { font-size: 1rem; line-height: 1.8; opacity: 0.8; margin-bottom: 40px; }
+
+/* Mobile View: Stacks everything straight down perfectly */
+@media (max-width: 900px) {
+    .editorial-showcase, 
+    .editorial-showcase:nth-child(even) { 
+        flex-direction: column; 
+        gap: 40px; 
+        margin-bottom: 100px; 
+    }
+    .editorial-img { width: 100%; }
+    .editorial-text { width: 100%; padding: 0 20px; text-align: center; align-items: center; }
+    .editorial-title { font-size: 2.5rem; }
+}

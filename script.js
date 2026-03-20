@@ -163,9 +163,13 @@ document.addEventListener("DOMContentLoaded", () => {
         return savedDesigns.includes(designId) ? 'active' : '';
     }
 
-    function createDesignCardHTML(design) {
+// Builds the HTML, but now accepts a "hidden" command
+    function createDesignCardHTML(design, hiddenClass = '') {
+        // If hiddenClass is passed, it forces opacity to 0 instantly
+        const style = hiddenClass ? 'style="opacity: 0;"' : ''; 
+        
         return `
-        <div class="design-card gallery-item" data-category="${design.category}">
+        <div class="design-card gallery-item ${hiddenClass}" data-category="${design.category}" ${style}>
             <div class="img-4x5 bg-cream">
                 <img src="${design.image}" alt="${design.name}">
                 <button class="wishlist-btn ${getIsActive(design.id)}" aria-label="Save to favourites" data-design-id="${design.id}">
@@ -236,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
             initQuickView();
         })
         .catch(error => {
-            console.error("Error loading designs from the atelier:", error);
+            console.error("Error loading designs:", error);
         });
 
     // ==========================================
