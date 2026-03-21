@@ -430,22 +430,18 @@ document.addEventListener("DOMContentLoaded", () => {
         const searchBtns = document.querySelectorAll('.search-btn');
         const searchOverlay = document.getElementById('search-overlay');
         const closeSearchBtn = document.getElementById('close-search');
+        const closeSearchLogo = document.getElementById('close-search-logo'); // The new Logo trigger
         const searchInput = document.getElementById('search-input');
         const searchResultsGrid = document.getElementById('search-results-grid');
         const searchEmptyState = document.getElementById('search-empty-state');
-        const clearSearchBtn = document.getElementById('clear-search-btn');
 
         if (searchBtns.length > 0 && searchOverlay && searchInput) {
             
-        // 1. OPEN SEARCH (With Anti-Jump Logic)
+            // 1. OPEN SEARCH
             searchBtns.forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    
-                    // Measure the exact width of the browser's scrollbar
                     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-                    
-                    // Add that width as invisible padding so the logo doesn't shift 1 millimetre
                     document.body.style.paddingRight = `${scrollbarWidth}px`;
                     
                     searchOverlay.classList.add('active');
@@ -454,11 +450,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             });
 
-            // 2. CLOSE SEARCH
+            // 2. CLOSE SEARCH (The Master Function)
             function closeSearch() {
                 searchOverlay.classList.remove('active');
-                
-                // Remove the overflow hidden first, then immediately strip the extra padding
                 document.body.style.overflow = '';
                 document.body.style.paddingRight = ''; 
                 
@@ -466,25 +460,38 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (searchResultsGrid) searchResultsGrid.innerHTML = ''; 
                 if (searchEmptyState) searchEmptyState.classList.add('d-none');
             }
-            // 3. THE REAL-TIME TYPING ENGINE
+
+            // Bind the Close function to BOTH the 'X' and the Logo
+            if (closeSearchBtn) {
+                closeSearchBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    closeSearch();
+                });
+            }
+            
+            if (closeSearchLogo) {
+                closeSearchLogo.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    closeSearch();
+                });
+            }
+
+            // 3. REAL-TIME TYPING ENGINE
             searchInput.addEventListener('input', (e) => {
                 const searchTerm = e.target.value.toLowerCase().trim();
 
-                // If they delete their text, clear the screen
                 if (searchTerm === '') {
                     searchResultsGrid.innerHTML = '';
                     searchEmptyState.classList.add('d-none');
                     return;
                 }
 
-                // Search the Google Drive memory for matches in Name, Category, or ID
                 const filteredDesigns = darpanDesigns.filter(design => 
                     design.name.toLowerCase().includes(searchTerm) ||
                     design.category.toLowerCase().includes(searchTerm) ||
                     design.id.toLowerCase().includes(searchTerm)
                 );
 
-                // Display Results or Empty State
                 if (filteredDesigns.length > 0) {
                     searchResultsGrid.innerHTML = filteredDesigns.map(design => createDesignCardHTML(design)).join('');
                     searchEmptyState.classList.add('d-none');
@@ -494,12 +501,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-            // 4. CLICKING A RESULT (Opens Quick View directly!)
+            // 4. CLICKING A RESULT
             searchResultsGrid.addEventListener('click', (e) => {
                 const card = e.target.closest('.design-card');
                 if (!card) return;
 
-                // Stop the heart button from opening the Quick View
                 if (e.target.closest('.wishlist-btn')) {
                     const btn = e.target.closest('.wishlist-btn');
                     const designId = btn.getAttribute('data-design-id');
@@ -513,12 +519,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                     localStorage.setItem('darpanFavourites', JSON.stringify(savedDesigns));
                     
-                    const favCountDisplay = document.getElementById('fav-count');
-                    if(favCountDisplay) favCountDisplay.innerText = savedDesigns.length;
-                    return; // Stop here so it doesn't open the modal
+                    const favCountDisplays = document.querySelectorAll('.fav-count');
+                    favCountDisplays.forEach(display => display.innerText = savedDesigns.length);
+                    return; 
                 }
 
-                // If they clicked the photo, trigger the Quick View
                 const wishlistBtn = card.querySelector('.wishlist-btn');
                 if (!wishlistBtn) return;
                 
@@ -534,9 +539,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     const interactionPanel = document.getElementById('qv-interaction-panel');
                     if(interactionPanel) interactionPanel.classList.remove('show-contact');
 
-                    // Magically swap the search overlay for the Quick View overlay
                     searchOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                    document.body.style.paddingRight = ''; 
                     document.getElementById('quick-view-modal').classList.add('active');
+                    document.body.style.overflow = 'hidden';
                 }
             });
         }
