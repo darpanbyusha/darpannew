@@ -271,9 +271,10 @@ document.addEventListener("DOMContentLoaded", () => {
         let savedDesigns = JSON.parse(localStorage.getItem('darpanFavourites')) || [];
 
         function updateFavCount() {
-            if(favCountDisplay) {
-                favCountDisplay.innerText = savedDesigns.length;
-            }
+            const favCountDisplays = document.querySelectorAll('.fav-count');
+            favCountDisplays.forEach(display => {
+                display.innerText = savedDesigns.length;
+        });
         }
         updateFavCount();
 
