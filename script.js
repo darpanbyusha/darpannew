@@ -441,8 +441,16 @@ document.addEventListener("DOMContentLoaded", () => {
             searchBtns.forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
+                    
+                    // Measure the scrollbar width
                     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+                    
+                    // Stop the body and the main header from jumping
                     document.body.style.paddingRight = `${scrollbarWidth}px`;
+                    const mainHeader = document.getElementById('main-header');
+                    if (mainHeader) {
+                        mainHeader.style.paddingRight = `calc(var(--pad-x) + ${scrollbarWidth}px)`;
+                    }
                     
                     searchOverlay.classList.add('active');
                     document.body.style.overflow = 'hidden';
@@ -450,30 +458,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             });
 
-            // 2. CLOSE SEARCH (The Master Function)
+            // 2. CLOSE SEARCH
             function closeSearch() {
                 searchOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-                document.body.style.paddingRight = ''; 
+                
+                // Wait for the slide-up animation to finish before restoring scrollbars
+                setTimeout(() => {
+                    document.body.style.overflow = '';
+                    document.body.style.paddingRight = ''; 
+                    const mainHeader = document.getElementById('main-header');
+                    if (mainHeader) mainHeader.style.paddingRight = '';
+                }, 500);
                 
                 searchInput.value = ''; 
                 if (searchResultsGrid) searchResultsGrid.innerHTML = ''; 
                 if (searchEmptyState) searchEmptyState.classList.add('d-none');
-            }
-
-            // Bind the Close function to BOTH the 'X' and the Logo
-            if (closeSearchBtn) {
-                closeSearchBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    closeSearch();
-                });
-            }
-            
-            if (closeSearchLogo) {
-                closeSearchLogo.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    closeSearch();
-                });
             }
 
             // 3. REAL-TIME TYPING ENGINE

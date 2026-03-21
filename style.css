@@ -1473,19 +1473,21 @@ button.btn-solid-gold {
 .search-modal {
     position: fixed;
     inset: 0;
-    background-color: #FFFFFF; /* Strict pure white, no frost */
+    background-color: #FFFFFF;
     z-index: 10000; 
     display: flex;
     flex-direction: column;
     overflow-y: auto;
     
+    /* THE FIX 1: The Top-Down Slide Animation */
+    transform: translateY(-100%);
     opacity: 0;
     visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.3s ease, visibility 0.3s ease; /* Faster, sharper transition */
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.5s ease;
 }
 
 .search-modal.active {
+    transform: translateY(0);
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
@@ -1597,11 +1599,17 @@ button.btn-solid-gold {
 
 /* Mobile */
 @media (max-width: 768px) {
-    .search-header { padding: 20px 24px; margin-bottom: 40px; }
-    .search-logo { height: 40px; }
-    .contact-ghost { width: auto; }
-    .header-ghost { display: none; }
+    /* Kept exactly the same padding as the main header to prevent jumping */
+    .search-header { padding: 24px var(--pad-x); margin-bottom: 40px; } 
+    
+    /* Reduced gaps slightly to fit mobile screens */
+    .search-socials { gap: 20px; } 
+    .search-controls { gap: 20px; } 
+    
+    /* Shrunk the ghost block so the close button fits, but DID NOT hide it! */
+    .contact-ghost { width: 30px; } 
+    
     .cta-question { font-size: 1.35rem; }
-    .search-cta-buttons { flex-direction: column; max-width: 300px; margin: 0 auto; }
+    .search-cta-buttons { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
     .btn-black-outline { width: 100%; justify-content: center; }
 }
