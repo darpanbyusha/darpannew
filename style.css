@@ -1467,13 +1467,13 @@ button.btn-solid-gold {
 }
 
 /* ==========================================
-   PREMIUM MONOCHROME SEARCH
+   PREMIUM MONOCHROME SEARCH OVERLAY
 ========================================== */
 
 .search-modal {
     position: fixed;
     inset: 0;
-    background-color: #FFFFFF; /* Strict pure white */
+    background-color: #FFFFFF; /* Strict pure white, no frost */
     z-index: 10000; 
     display: flex;
     flex-direction: column;
@@ -1491,8 +1491,8 @@ button.btn-solid-gold {
     pointer-events: auto;
 }
 
-/* --- THE TRANSFORMING HEADER --- */
-/* Mimics your main header's exact spacing so the logo stays perfectly still */
+/* --- THE MIRROR HEADER --- */
+/* Matches your main header's exact layout math */
 .search-header {
     display: flex;
     justify-content: space-between;
@@ -1502,15 +1502,18 @@ button.btn-solid-gold {
     margin-bottom: 60px;
 }
 
-.search-socials { gap: 20px; display: flex; align-items: center; flex: 1; }
-.search-socials a { color: #000000; font-size: 1.2rem; transition: opacity 0.3s; }
+/* Spaced out Social Icons */
+.search-socials { gap: 40px; display: flex; align-items: center; flex: 1; }
+.search-socials a { color: #000000; font-size: 1.25rem; transition: opacity 0.3s; }
 .search-socials a:hover { opacity: 0.5; }
 
-/* Forces logo to its natural dark state on the white background */
-.search-logo { height: 60px; filter: none !important; } 
+/* Forces logo and heart to black */
+.search-logo { height: 60px; filter: none !important; margin: 0 auto; display: block; } 
+.search-heart-icon { stroke: #000000 !important; fill: none !important; }
+.search-fav-count { background-color: #000000 !important; color: #FFFFFF !important; } 
 
 .search-controls { gap: 30px; display: flex; align-items: center; justify-content: flex-end; flex: 1; }
-.search-fav-count { background-color: #000000 !important; color: #FFFFFF !important; } 
+.contact-ghost { width: 120px; display: flex; justify-content: flex-end; } /* Perfect Contact Us size */
 
 .close-search-btn {
     background: none;
@@ -1522,7 +1525,7 @@ button.btn-solid-gold {
 }
 .close-search-btn:hover { transform: scale(1.1); }
 
-/* --- THE SEARCH BOX & CONTENT --- */
+/* --- THE SEARCH BOX --- */
 .search-container {
     width: 100%;
     max-width: 1200px; 
@@ -1533,10 +1536,9 @@ button.btn-solid-gold {
     align-items: center;
 }
 
-/* The Sharp Black Rectangle */
 .premium-search-box {
     width: 100%;
-    max-width: 600px; /* Kept intentionally narrow for an editorial feel */
+    max-width: 600px; 
     border: 1px solid #000000;
     padding: 18px 25px;
     margin-bottom: 80px;
@@ -1560,7 +1562,7 @@ button.btn-solid-gold {
     opacity: 0.4;
 }
 
-/* --- THE BOTTOM CTA --- */
+/* --- THE CTA BUTTONS --- */
 .cta-question {
     color: #000000;
     font-family: var(--font-heading);
@@ -1575,7 +1577,6 @@ button.btn-solid-gold {
     justify-content: center;
 }
 
-/* Stark black outline buttons */
 .btn-black-outline {
     display: inline-flex;
     align-items: center;
@@ -1591,21 +1592,16 @@ button.btn-solid-gold {
     transition: all 0.3s ease;
 }
 
-.btn-black-outline:hover {
-    background-color: #000000;
-    color: #FFFFFF;
-}
-
-/* Utility */
+.btn-black-outline:hover { background-color: #000000; color: #FFFFFF; }
 .d-none { display: none !important; }
 
-/* Mobile Adjustments */
+/* Mobile */
 @media (max-width: 768px) {
     .search-header { padding: 20px 24px; margin-bottom: 40px; }
-    .search-socials { gap: 15px; }
     .search-logo { height: 40px; }
-    .search-controls { gap: 20px; }
+    .contact-ghost { width: auto; }
+    .header-ghost { display: none; }
     .cta-question { font-size: 1.35rem; }
-    .search-cta-buttons { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
+    .search-cta-buttons { flex-direction: column; max-width: 300px; margin: 0 auto; }
     .btn-black-outline { width: 100%; justify-content: center; }
 }

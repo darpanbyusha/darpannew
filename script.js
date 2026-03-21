@@ -437,13 +437,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (searchBtns.length > 0 && searchOverlay && searchInput) {
             
-            // 1. OPEN SEARCH
+        // 1. OPEN SEARCH (With Anti-Jump Logic)
             searchBtns.forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
+                    
+                    // Measure the exact width of the browser's scrollbar
+                    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+                    
+                    // Add that width as invisible padding so the logo doesn't shift 1 millimetre
+                    document.body.style.paddingRight = `${scrollbarWidth}px`;
+                    
                     searchOverlay.classList.add('active');
                     document.body.style.overflow = 'hidden';
-                    // Automatically click into the text box so they can just start typing
                     setTimeout(() => searchInput.focus(), 100); 
                 });
             });
@@ -451,20 +457,15 @@ document.addEventListener("DOMContentLoaded", () => {
             // 2. CLOSE SEARCH
             function closeSearch() {
                 searchOverlay.classList.remove('active');
+                
+                // Remove the overflow hidden first, then immediately strip the extra padding
                 document.body.style.overflow = '';
+                document.body.style.paddingRight = ''; 
+                
                 searchInput.value = ''; 
                 if (searchResultsGrid) searchResultsGrid.innerHTML = ''; 
                 if (searchEmptyState) searchEmptyState.classList.add('d-none');
             }
-
-            if (closeSearchBtn) closeSearchBtn.addEventListener('click', closeSearch);
-            if (clearSearchBtn) clearSearchBtn.addEventListener('click', () => {
-                searchInput.value = '';
-                searchInput.focus();
-                searchResultsGrid.innerHTML = '';
-                searchEmptyState.classList.add('d-none');
-            });
-
             // 3. THE REAL-TIME TYPING ENGINE
             searchInput.addEventListener('input', (e) => {
                 const searchTerm = e.target.value.toLowerCase().trim();

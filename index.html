@@ -450,22 +450,27 @@
             </div>
             
             <div class="header-right search-controls">
+                <div class="header-ghost" style="width: 20px;"></div>
+                
                 <a href="favourites.html" class="favourites-btn" aria-label="Favourites">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.5">
+                    <svg class="search-heart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.5">
                         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                     </svg>
                     <span class="fav-count search-fav-count">0</span>
                 </a>
-                <button id="close-search" class="close-search-btn" aria-label="Close Search">
-                    <i class="fas fa-times"></i>
-                </button>
+                
+                <div class="header-ghost contact-ghost">
+                    <button id="close-search" class="close-search-btn" aria-label="Close Search">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
             </div>
         </div>
 
         <div class="search-container">
             
             <div class="premium-search-box">
-                <input type="text" id="search-input" class="premium-search-input" placeholder="Search for a design..." autocomplete="off">
+                <input type="text" id="search-input" class="premium-search-input" placeholder="SEARCH FOR A DESIGN..." autocomplete="off">
             </div>
             
             <div id="search-results-grid" class="grid-4-col gallery-grid max-w-screen mx-auto" style="width: 100%;">
@@ -479,7 +484,7 @@
                 <p class="cta-question">Can't find exactly what you are looking for?<br>Reach out to discuss your custom requirements.</p>
                 <div class="search-cta-buttons">
                     <a href="tel:+919213841471" class="btn-black-outline"><i class="fas fa-phone"></i> Call Us</a>
-                    <a href="https://wa.me/919213841471" target="_blank" class="btn-black-outline"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+                    <a href="https://wa.me/919213841471" target="_blank" rel="noopener noreferrer" class="btn-black-outline"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
                 </div>
             </div>
 
