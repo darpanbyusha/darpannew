@@ -196,7 +196,18 @@ ul { list-style: none; }
 .experience-text-side { width: 50%; padding: 60px 80px; display: flex; flex-direction: column; justify-content: center; overflow-y: auto; }
 .experience-item { border-bottom: 1px solid rgba(245, 245, 220, 0.15); padding: 20px 0; cursor: pointer; transition: all 0.4s ease; }
 .experience-item h3 { font-size: 1.4rem; display: flex; align-items: center; gap: 15px; margin: 0; transition: transform 0.4s ease, color 0.4s ease; }
-.experience-item p { max-height: 0; opacity: 0; margin: 0; font-size: 0.9rem; line-height: 1.6; color: rgba(245, 245, 220, 0.6); transition: max-height 0.5s ease, opacity 0.4s ease, margin-top 0.4s ease; }
+.experience-item p { 
+    max-height: 0; 
+    opacity: 0; 
+    margin: 0; 
+    font-size: 0.9rem; 
+    line-height: 1.6; 
+    color: rgba(245, 245, 220, 0.6); 
+    transition: max-height 0.5s ease, opacity 0.4s ease, margin-top 0.4s ease; 
+    
+    /* THE FIX: Forces the text to instantly hide when the box shrinks */
+    overflow: hidden; 
+}
 .experience-item.active { border-bottom-color: var(--gold); }
 .experience-item.active h3 { color: var(--gold); transform: translateX(10px); }
 .experience-item.active p { max-height: 100px; opacity: 1; margin-top: 15px; }
@@ -289,16 +300,32 @@ button.btn-solid-gold { border: 1px solid var(--gold) !important; font-family: i
 ========================================== */
 @media (pointer: fine) {
     body { cursor: url("data:image/svg+xml;charset=utf-8,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 4 L22 10 L14 14 L10 22 Z' fill='%23D4AF37' stroke='%232B1B17' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 4 4, auto !important; }
-    a, button, input, .menu-toggle-btn, .wishlist-btn, .experience-item { cursor: url("data:image/svg+xml;charset=utf-8,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 4 L22 10 L14 14 L10 22 Z' fill='%232B1B17' stroke='%23D4AF37' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 4 4, pointer !important; }
+    /* Update the second rule in your cursor section to include .landscape-card */
+a, button, input, .menu-toggle-btn, .wishlist-btn, .experience-item, .landscape-card { 
+    cursor: url("data:image/svg+xml;charset=utf-8,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 4 L22 10 L14 14 L10 22 Z' fill='%232B1B17' stroke='%23D4AF37' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 4 4, pointer !important; 
+}
     p, h1, h2, h3, h4, h5, h6, span { cursor: inherit; }
 }
 
 /* ==========================================
    CONTACT MODAL (POP-UP)
 ========================================== */
-.modal-overlay { position: fixed; inset: 0; background-color: rgba(43, 27, 23, 0.85); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+.modal-overlay { 
+    position: fixed; inset: 0; background-color: rgba(43, 27, 23, 0.85); 
+    z-index: 9999; display: flex; align-items: center; justify-content: center; 
+    
+    /* THE FIX: Forces it to be physically unclickable when hidden */
+    opacity: 0; 
+    visibility: hidden; 
+    pointer-events: none; 
+    transition: opacity 0.4s ease, visibility 0.4s ease; 
+}
 .modal-box { background-color: var(--white); padding: 50px 40px; border-radius: 0; max-width: 450px; width: 90%; position: relative; text-align: center; transform: translateY(30px); transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
-.modal-overlay.active { opacity: 1; pointer-events: auto; }
+.modal-overlay.active { 
+    opacity: 1; 
+    visibility: visible; 
+    pointer-events: auto; 
+}
 .modal-overlay.active .modal-box { transform: translateY(0); }
 .close-btn { position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 1.5rem; color: var(--brown); cursor: pointer; transition: color 0.3s ease; z-index: 100; }
 .close-btn:hover { color: var(--copper); }
@@ -506,4 +533,15 @@ button.btn-solid-gold { border: 1px solid var(--gold) !important; font-family: i
     .header-search-mode .search-map-icon { display: none !important; }
     .header-search-mode #close-search-btn { display: none !important; }
     .close-search-bottom-btn { display: block; }
+}
+@media (max-width: 768px) {
+    /* THE FIX: Shrinks the logo and header padding so the buttons actually fit on the screen */
+    .site-logo { height: 40px; }
+    .site-header { padding: 15px var(--pad-x); }
+    .header-left, .header-right { gap: 15px; }
+    
+    /* Pushes the search box down slightly so it clears the mobile header */
+    .search-modal { padding-top: 100px; } 
+
+    /* ... keep the rest of your mobile CSS that is already in here ... */
 }
