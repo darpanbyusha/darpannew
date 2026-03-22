@@ -14,6 +14,7 @@
 
 <body>
     <header class="site-header header-solid sticky-top" id="main-header">
+        
         <div class="header-left">
             <button class="menu-toggle-btn" id="open-menu-btn">
                 <div class="hamburger-icon">
@@ -21,16 +22,21 @@
                 </div>
                 <span class="header-label hidden-mobile">Menu</span>
             </button>
+            
+            <div class="header-search-socials d-none">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Google Maps" class="search-map-icon"><i class="fas fa-map-marker-alt"></i></a>
+            </div>
         </div>
         
         <div class="header-centre">
-            <a href="index.html" class="logo-link">
+            <a href="index.html" class="logo-link" id="header-logo-link">
                 <img src="images/logo.png" alt="DARPAN by Usha" class="site-logo">
             </a>
         </div>
         
         <div class="header-right">
-            <button class="search-btn" aria-label="Search">
+            <button class="search-btn" id="open-search-btn" aria-label="Search">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <circle cx="11" cy="11" r="8"></circle>
                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -41,10 +47,14 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                 </svg>
-                <span id="fav-count" class="fav-count">0</span>
+                <span class="fav-count">0</span>
             </a>
 
             <a href="#" class="btn-header-contact hidden-mobile open-nav-popup">Contact Us</a>
+
+            <button id="close-search-btn" class="close-search-btn d-none" aria-label="Close Search">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
     </header>
 
@@ -220,5 +230,34 @@
     </div>
 
     <script src="script.js"></script>
+    <div id="search-overlay" class="search-modal">
+        <div class="search-container">
+            
+            <div class="premium-search-box">
+                <svg class="search-input-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="search-input" class="premium-search-input" placeholder="SEARCH FOR A DESIGN..." autocomplete="off">
+            </div>
+            
+            <div id="search-results-grid" class="grid-4-col gallery-grid max-w-screen mx-auto" style="width: 100%;"></div>
+            
+            <div id="search-empty-state" class="text-center d-none" style="margin-top: 40px;">
+                <p style="color: #000; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.1em;">No matching designs found.</p>
+            </div>
+
+            <div class="search-footer-cta mt-large text-center">
+                <p class="cta-question">Can't find exactly what you are looking for?<br>Reach out to discuss your custom requirements.</p>
+                <div class="search-cta-buttons">
+                    <a href="tel:+919213841471" class="btn-black-outline"><i class="fas fa-phone"></i> Call Us</a>
+                    <a href="https://wa.me/919213841471" target="_blank" rel="noopener noreferrer" class="btn-black-outline"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+                </div>
+                
+                <button id="close-search-bottom" class="close-search-bottom-btn">Close Search</button>
+            </div>
+
+        </div>
+    </div>
 </body>
 </html>
